@@ -52,6 +52,18 @@ List tickets:
 ist-ticket list
 ```
 
+Help:
+
+```cmd
+ist-ticket help
+```
+
+Fallback help:
+
+```cmd
+python -m my_python_library help
+```
+
 ## Development
 
 Use local venv:
@@ -74,6 +86,26 @@ Build:
 python -m build
 ```
 
+Before publishing a new PyPI release, bump `version` in `pyproject.toml`; PyPI never accepts the same version twice.
+
+User-facing publish helper:
+
+```cmd
+publish_new_version.bat
+```
+
+The helper:
+
+1. Runs tests.
+2. Builds package.
+3. Runs `twine check`.
+4. Commits changes with a prompted message.
+5. Pushes to GitHub.
+6. Starts `publish.yml` via `gh workflow run` if GitHub CLI is installed.
+7. Otherwise prints the GitHub Actions URL for manual `Run workflow`.
+
+If modifying release flow, keep `publish_new_version.bat`, `PUBLISH_TO_PYPI.md`, `USER_GUIDE_RU.md`, and `.github/workflows/publish.yml` in sync.
+
 ## Ticket Data
 
 Ticket data is hardcoded in:
@@ -94,6 +126,13 @@ When changing tickets:
 2. Keep ticket numbers sequential unless user asks otherwise.
 3. Run `python -m pytest`.
 4. Test CLI with `ist-ticket 1`.
+
+When changing CLI help:
+
+1. Edit `src/my_python_library/cli.py`.
+2. Update `README.md` and `USER_GUIDE_RU.md` if command behavior changes.
+3. Add or update tests in `tests/test_core.py`.
+4. Run `python -m pytest`.
 
 ## Git Notes
 

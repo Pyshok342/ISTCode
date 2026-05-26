@@ -44,6 +44,12 @@ Show available tickets:
 ist-ticket list
 ```
 
+Show help:
+
+```powershell
+ist-ticket help
+```
+
 Alternative launch:
 
 ```powershell
@@ -68,6 +74,12 @@ python -m pytest
 
 ```powershell
 python -m build
+```
+
+## Publish New Version
+
+```powershell
+publish_new_version.bat
 ```
 
 ## Publish

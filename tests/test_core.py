@@ -39,6 +39,13 @@ def test_cli_lists_tickets(capsys: pytest.CaptureFixture[str]) -> None:
     assert "1, 2, 3" in capsys.readouterr().out
 
 
+def test_cli_prints_help(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["help"]) == 0
+    output = capsys.readouterr().out
+    assert "Команды" in output
+    assert "ist-ticket 1" in output
+
+
 def test_cli_rejects_bad_ticket(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["999"]) == 2
     assert "не найден" in capsys.readouterr().err

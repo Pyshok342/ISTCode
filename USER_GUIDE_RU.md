@@ -56,6 +56,12 @@ ist-ticket 1
 ist-ticket list
 ```
 
+Показать справку:
+
+```cmd
+ist-ticket help
+```
+
 Если команда `ist-ticket` не найдена, запускай так:
 
 ```cmd
@@ -66,6 +72,12 @@ python -m my_python_library 1
 
 ```cmd
 python -m my_python_library list
+```
+
+Справка через запасной запуск:
+
+```cmd
+python -m my_python_library help
 ```
 
 ## Примеры
@@ -167,6 +179,25 @@ ist-ticket 1
 ```
 
 ## Как отправить изменения на GitHub
+
+Простой способ:
+
+```cmd
+publish_new_version.bat
+```
+
+Файл сам:
+
+- запускает тесты;
+- собирает пакет;
+- проверяет пакет;
+- делает commit;
+- делает push;
+- запускает публикацию на PyPI через GitHub Actions, если установлен `gh`.
+
+Если `gh` не установлен, файл покажет ссылку, где нажать `Run workflow` вручную.
+
+Ручной способ:
 
 После правок:
 
