@@ -25,7 +25,12 @@ class TicketFile:
 #         TicketFile(6, 3, "ticket_6_demo.pptx", "Презентация"),
 #     ),
 # }
-TICKET_FILES: dict[int, tuple[TicketFile, ...]] = {}
+TICKET_FILES: dict[int, tuple[TicketFile, ...]] = {
+    1: (
+        TicketFile(1, 1, "ticket_1_question_1_types.png", "Схема типов данных"),
+        TicketFile(1, 1, "ticket_1_question_1_presentation.pptx", "Мини-презентация"),
+    ),
+}
 
 
 def list_ticket_files(ticket_number: int) -> tuple[TicketFile, ...]:

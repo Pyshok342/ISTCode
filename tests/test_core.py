@@ -31,7 +31,9 @@ def test_missing_ticket() -> None:
 
 def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["1"]) == 0
-    assert "Билет №1" in capsys.readouterr().out
+    output = capsys.readouterr().out
+    assert "Билет №1" in output
+    assert "ticket_1_question_1_types.png" in output
 
 
 def test_cli_lists_tickets(capsys: pytest.CaptureFixture[str]) -> None:
@@ -48,18 +50,24 @@ def test_cli_prints_help(capsys: pytest.CaptureFixture[str]) -> None:
     assert "ist-ticket images 6" in output
 
 
+def test_ticket_files() -> None:
+    formatted = format_ticket_files(1)
+    assert "ticket_1_question_1_types.png" in formatted
+    assert "ticket_1_question_1_presentation.pptx" in formatted
+
+
 def test_empty_ticket_files() -> None:
-    assert format_ticket_files(1) == "Файлы для билета N 1 не добавлены."
+    assert format_ticket_files(2) == "Файлы для билета N 2 не добавлены."
 
 
 def test_cli_prints_empty_files(capsys: pytest.CaptureFixture[str]) -> None:
-    assert main(["files", "1"]) == 0
+    assert main(["files", "2"]) == 0
     assert "не добавлены" in capsys.readouterr().out
 
 
 def test_cli_images_alias(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["images", "1"]) == 0
-    assert "не добавлены" in capsys.readouterr().out
+    assert "ticket_1_question_1_types.png" in capsys.readouterr().out
 
 
 def test_cli_rejects_bad_ticket(capsys: pytest.CaptureFixture[str]) -> None:

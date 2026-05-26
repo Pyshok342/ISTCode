@@ -17,7 +17,8 @@ if not exist ".venv\Scripts\python.exe" (
 )
 
 echo Checking package version...
-.venv\Scripts\python.exe -c "import tomllib; print('Version:', tomllib.load(open('pyproject.toml','rb'))['project']['version'])"
+for /f "delims=" %%v in ('.venv\Scripts\python.exe -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])"') do set VERSION=%%v
+echo Version: %VERSION%
 if errorlevel 1 exit /b 1
 
 echo.
@@ -43,8 +44,15 @@ git status --short
 if errorlevel 1 exit /b 1
 
 echo.
-set /p COMMIT_MSG=Commit message [Publish new version]: 
-if "%COMMIT_MSG%"=="" set COMMIT_MSG=Publish new version
+set COMMIT_MSG=Publish istcode %VERSION%
+echo Commit message:
+echo   %COMMIT_MSG%
+echo.
+set /p CONFIRM=Continue? [y/n]: 
+if /i not "%CONFIRM%"=="y" (
+  echo Cancelled.
+  exit /b 0
+)
 
 git add .
 if errorlevel 1 exit /b 1

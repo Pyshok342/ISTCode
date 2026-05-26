@@ -107,10 +107,12 @@ The helper:
 1. Runs tests.
 2. Builds package.
 3. Runs `twine check`.
-4. Commits changes with a prompted message.
-5. Pushes to GitHub.
-6. Starts `publish.yml` via `gh workflow run` if GitHub CLI is installed.
-7. Otherwise prints the GitHub Actions URL for manual `Run workflow`.
+4. Builds commit message automatically as `Publish istcode <version>`.
+5. Asks only `Continue? [y/n]`.
+6. Commits changes.
+7. Pushes to GitHub.
+8. Starts `publish.yml` via `gh workflow run` if GitHub CLI is installed.
+9. Otherwise prints the GitHub Actions URL for manual `Run workflow`.
 
 If modifying release flow, keep `publish_new_version.bat`, `PUBLISH_TO_PYPI.md`, `USER_GUIDE_RU.md`, and `.github/workflows/publish.yml` in sync.
 
