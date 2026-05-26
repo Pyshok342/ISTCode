@@ -12,6 +12,73 @@ pip install istcode
 python -m pip install istcode
 ```
 
+## Способ 1. Через GitHub Actions без токена
+
+Это самый удобный способ. Токен в командную строку вставлять не надо.
+
+### 1. Добавить Pending Publisher на PyPI
+
+Открой PyPI:
+
+```text
+https://pypi.org/manage/account/publishing/
+```
+
+Найди GitHub Actions / Pending publisher и заполни:
+
+```text
+Project name: istcode
+Owner: Pyshok342
+Repository name: ISTCode
+Workflow name: publish.yml
+Environment name: оставить пустым
+```
+
+Нажми `Add`.
+
+### 2. Отправить workflow на GitHub
+
+В `cmd`:
+
+```cmd
+cd "C:\Users\Huawei\Desktop\маркетплейсы\Codex\my_python_library"
+git add .
+git commit -m "Add PyPI trusted publishing"
+git push
+```
+
+### 3. Запустить публикацию в GitHub
+
+Открой:
+
+```text
+https://github.com/Pyshok342/ISTCode/actions
+```
+
+Дальше:
+
+1. Нажми `Publish to PyPI`.
+2. Нажми `Run workflow`.
+3. Выбери ветку `main`.
+4. Нажми зеленую кнопку `Run workflow`.
+
+Если все прошло успешно, появится страница:
+
+```text
+https://pypi.org/project/istcode/
+```
+
+Проверка:
+
+```cmd
+python -m pip install --upgrade istcode
+ist-ticket 1
+```
+
+## Способ 2. Через токен вручную
+
+Если GitHub Actions не подходит, можно через токен.
+
 ## 1. Аккаунт PyPI
 
 Зарегистрируйся на PyPI:
