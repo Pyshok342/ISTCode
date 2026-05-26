@@ -2,6 +2,12 @@
 
 Command-line helper for exam tickets.
 
+Русская инструкция:
+
+```text
+USER_GUIDE_RU.md
+```
+
 ## Install for development
 
 ```powershell
@@ -16,6 +22,12 @@ Install on any computer:
 
 ```powershell
 python -m pip install https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
+```
+
+After publishing to PyPI:
+
+```powershell
+python -m pip install istcode
 ```
 
 ## Use

@@ -1,11 +1,11 @@
 [project]
-name = "my-python-library"
+name = "istcode"
 version = "0.2.0"
 description = "Command-line exam ticket helper"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
-  { name = "Your Name" }
+  { name = "Pyshok342", email = "spqamsjf@clokkmail.com" }
 ]
 dependencies = []
 
@@ -22,6 +22,9 @@ build-backend = "setuptools.build_meta"
 
 [project.scripts]
 ist-ticket = "my_python_library.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Pyshok342/ISTCode"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

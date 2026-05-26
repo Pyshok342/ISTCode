@@ -1,42 +1,149 @@
-# Publish to PyPI
+# Публикация ISTCode на PyPI
 
-After publish, install on any computer:
+После публикации установка будет короткой:
 
-```powershell
-python -m pip install my-python-library
+```cmd
+pip install istcode
 ```
 
-## Requirements
+или надежнее:
 
-1. Create account:
-   - https://pypi.org/account/register/
-   - https://test.pypi.org/account/register/
-2. Pick a unique package name.
-3. Update `name` in `pyproject.toml`.
-4. Create an API token on PyPI.
+```cmd
+python -m pip install istcode
+```
 
-## Build
+## 1. Аккаунт PyPI
 
-```powershell
+Зарегистрируйся на PyPI:
+
+```text
+https://pypi.org/account/register/
+```
+
+Почта:
+
+```text
+spqamsjf@clokkmail.com
+```
+
+После регистрации подтверди письмо на почте.
+
+## 2. API-токен
+
+Открой:
+
+```text
+https://pypi.org/manage/account/token/
+```
+
+Создай токен:
+
+```text
+Add API token
+```
+
+Scope можно выбрать:
+
+```text
+Entire account
+```
+
+Токен выглядит примерно так:
+
+```text
+pypi-...
+```
+
+Никому его не отправляй. В чат тоже не отправляй.
+
+## 3. Подготовка проекта
+
+Открой `cmd`:
+
+```cmd
 cd "C:\Users\Huawei\Desktop\маркетплейсы\Codex\my_python_library"
-.venv\Scripts\Activate.ps1
+.venv\Scripts\activate
+python -m pip install --upgrade build twine
+```
+
+## 4. Собрать пакет
+
+Сначала очисти старые сборки:
+
+```cmd
+rmdir /s /q dist
+```
+
+Если напишет, что папка не найдена - это нормально.
+
+Собери новую версию:
+
+```cmd
 python -m build
 ```
 
-## Upload to TestPyPI first
+В папке `dist` должны появиться файлы:
 
-```powershell
-python -m twine upload --repository testpypi dist/*
+```text
+istcode-0.2.0.tar.gz
+istcode-0.2.0-py3-none-any.whl
 ```
 
-Install from TestPyPI:
+## 5. Загрузить на PyPI
 
-```powershell
-python -m pip install --index-url https://test.pypi.org/simple/ my-python-library
+```cmd
+python -m twine upload dist/*
 ```
 
-## Upload to PyPI
+Когда спросит:
 
-```powershell
+```text
+username
+```
+
+введи:
+
+```text
+__token__
+```
+
+Когда спросит:
+
+```text
+password
+```
+
+вставь PyPI API-токен, который начинается с `pypi-`.
+
+## 6. Проверить установку
+
+На любом компьютере:
+
+```cmd
+python -m pip install istcode
+ist-ticket 1
+```
+
+Если `ist-ticket` не найден:
+
+```cmd
+python -m my_python_library 1
+```
+
+## Если PyPI скажет, что имя занято
+
+Значит `istcode` уже кто-то занял или PyPI его не разрешил.
+
+Тогда надо поменять `name` в `pyproject.toml`, например:
+
+```toml
+name = "istcode-pyshok342"
+```
+
+После этого увеличить версию и снова собрать:
+
+```cmd
+rmdir /s /q dist
+python -m build
 python -m twine upload dist/*
 ```
