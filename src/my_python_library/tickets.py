@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from .files import TICKET_TEXT_FILENAME, resolve_ticket_folder_path
+
 
 @dataclass(frozen=True)
 class Ticket:
@@ -187,7 +189,23 @@ def get_ticket(number: int) -> Ticket:
 
 
 def format_ticket(number: int) -> str:
+    ticket_text = read_ticket_text(number)
+    if ticket_text is not None:
+        return ticket_text
+
     ticket = get_ticket(number)
     lines = [f"Билет №{ticket.number}", ""]
     lines.extend(f"{index}. {question}" for index, question in enumerate(ticket.questions, start=1))
     return "\n".join(lines)
+
+
+def resolve_ticket_text_path(number: int):
+    return resolve_ticket_folder_path(number) / TICKET_TEXT_FILENAME
+
+
+def read_ticket_text(number: int) -> str | None:
+    path = resolve_ticket_text_path(number)
+    if not path.exists():
+        return None
+    text = path.read_text(encoding="utf-8-sig").strip()
+    return text or None

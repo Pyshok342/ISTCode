@@ -20,8 +20,9 @@ def test_get_ticket() -> None:
 
 def test_format_ticket() -> None:
     formatted = format_ticket(20)
-    assert formatted.startswith("Билет №20")
+    assert formatted.startswith("# Билет №20")
     assert "Проблемы интеллектуального права" in formatted
+    assert "Ответ:" in formatted
 
 
 def test_missing_ticket() -> None:
@@ -33,8 +34,18 @@ def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["1"]) == 0
     output = capsys.readouterr().out
     assert "Билет №1" in output
+    assert "Ответ:" in output
     assert "Папка файлов билета N 1" in output
+    assert "ticket.md" in output
     assert "ticket_1_question_1_types.png" in output
+
+
+def test_cli_prints_ticket_without_attachment_list(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["2"]) == 0
+    output = capsys.readouterr().out
+    assert "Билет №2" in output
+    assert "Ответ:" in output
+    assert "Папка файлов билета N 2" not in output
 
 
 def test_cli_lists_tickets(capsys: pytest.CaptureFixture[str]) -> None:
@@ -54,6 +65,7 @@ def test_cli_prints_help(capsys: pytest.CaptureFixture[str]) -> None:
 def test_ticket_files() -> None:
     formatted = format_ticket_files(1)
     assert "ticket_01" in formatted
+    assert "ticket.md" in formatted
     assert "ticket_1_question_1_types.png" in formatted
     assert "ticket_1_question_1_presentation.pptx" in formatted
 
@@ -61,12 +73,14 @@ def test_ticket_files() -> None:
 def test_empty_ticket_files() -> None:
     formatted = format_ticket_files(2)
     assert "ticket_02" in formatted
-    assert "Файлы не добавлены." in formatted
+    assert "ticket.md" in formatted
 
 
 def test_cli_prints_empty_files(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["files", "2"]) == 0
-    assert "не добавлены" in capsys.readouterr().out
+    output = capsys.readouterr().out
+    assert "ticket.md" in output
+    assert "не добавлены" not in output
 
 
 def test_cli_images_alias(capsys: pytest.CaptureFixture[str]) -> None:

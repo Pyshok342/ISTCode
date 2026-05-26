@@ -38,6 +38,14 @@ Show ticket by number:
 ist-ticket 1
 ```
 
+The command reads ticket text from:
+
+```text
+src/my_python_library/assets/files/ticket_01/ticket.md
+```
+
+Edit this file to change ticket questions or answers.
+
 Show available tickets:
 
 ```powershell
@@ -70,6 +78,8 @@ src/my_python_library/assets/files/ticket_02
 ...
 src/my_python_library/assets/files/ticket_20
 ```
+
+Each folder contains `ticket.md`. This is the editable text shown by `ist-ticket N`.
 
 Alternative launch:
 

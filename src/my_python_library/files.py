@@ -8,7 +8,9 @@ from importlib.resources import files
 from pathlib import Path
 
 TICKET_COUNT = 20
+TICKET_TEXT_FILENAME = "ticket.md"
 IGNORED_FILENAMES = {"README.md", ".gitkeep"}
+ATTACHMENT_IGNORED_FILENAMES = IGNORED_FILENAMES | {TICKET_TEXT_FILENAME}
 
 
 @dataclass(frozen=True)
@@ -27,7 +29,7 @@ def list_tickets_with_files() -> list[int]:
     return [
         ticket_number
         for ticket_number in range(1, TICKET_COUNT + 1)
-        if list_ticket_file_paths(ticket_number)
+        if list_ticket_attachment_paths(ticket_number)
     ]
 
 
@@ -47,6 +49,14 @@ def resolve_ticket_folder_path(ticket_number: int) -> Path:
 
 
 def list_ticket_file_paths(ticket_number: int) -> tuple[Path, ...]:
+    return _list_ticket_file_paths(ticket_number, IGNORED_FILENAMES)
+
+
+def list_ticket_attachment_paths(ticket_number: int) -> tuple[Path, ...]:
+    return _list_ticket_file_paths(ticket_number, ATTACHMENT_IGNORED_FILENAMES)
+
+
+def _list_ticket_file_paths(ticket_number: int, ignored_filenames: set[str]) -> tuple[Path, ...]:
     folder = resolve_ticket_folder_path(ticket_number)
     if not folder.exists() or not folder.is_dir():
         return ()
@@ -55,7 +65,7 @@ def list_ticket_file_paths(ticket_number: int) -> tuple[Path, ...]:
         sorted(
             path.resolve()
             for path in folder.iterdir()
-            if path.is_file() and path.name not in IGNORED_FILENAMES and not path.name.startswith(".")
+            if path.is_file() and path.name not in ignored_filenames and not path.name.startswith(".")
         )
     )
 

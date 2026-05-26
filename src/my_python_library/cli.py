@@ -4,7 +4,7 @@ import argparse
 import sys
 from collections.abc import Sequence
 
-from .files import format_ticket_files, list_ticket_files, list_tickets_with_files, open_ticket_files
+from .files import format_ticket_files, list_ticket_attachment_paths, list_tickets_with_files, open_ticket_files
 from .tickets import format_ticket, list_ticket_numbers
 
 
@@ -114,7 +114,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     try:
         print(format_ticket(number))
-        if not args.no_images and list_ticket_files(number):
+        if not args.no_images and list_ticket_attachment_paths(number):
             print()
             print(format_ticket_files(number))
         if args.open_images:

@@ -118,13 +118,18 @@ If modifying release flow, keep `publish_new_version.bat`, `PUBLISH_TO_PYPI.md`,
 
 ## Ticket Data
 
-Ticket data is hardcoded in:
+Editable ticket text lives in `ticket.md` files inside each ticket folder:
 
 ```text
-src/my_python_library/tickets.py
+src/my_python_library/assets/files/ticket_01/ticket.md
+src/my_python_library/assets/files/ticket_02/ticket.md
+...
+src/my_python_library/assets/files/ticket_20/ticket.md
 ```
 
-Ticket file attachments are hardcoded in:
+`src/my_python_library/tickets.py` remains the fallback source when `ticket.md` is missing.
+
+Ticket file attachments are stored in:
 
 ```text
 src/my_python_library/assets/files/ticket_01 ... ticket_20
@@ -159,7 +164,7 @@ from my_python_library import format_ticket_files, list_ticket_files, list_ticke
 
 When changing tickets:
 
-1. Edit `TICKETS`.
+1. Edit the matching `ticket.md`, for example `src/my_python_library/assets/files/ticket_06/ticket.md`.
 2. Keep ticket numbers sequential unless user asks otherwise.
 3. Run `python -m pytest`.
 4. Test CLI with `ist-ticket 1`.
