@@ -8,7 +8,7 @@ from .files import (
     list_ticket_files,
     list_tickets_with_files,
     open_ticket_files,
-    resolve_ticket_file_path,
+    resolve_ticket_folder_path,
 )
 
 
@@ -26,7 +26,7 @@ def list_tickets_with_images() -> list[int]:
 
 
 def resolve_image_path(image: TicketFile):
-    return resolve_ticket_file_path(image)
+    return (resolve_ticket_folder_path(image.ticket_number) / image.filename).resolve()
 
 
 def format_ticket_images(ticket_number: int) -> str:

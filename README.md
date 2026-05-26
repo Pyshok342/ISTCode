@@ -50,16 +50,25 @@ Show help:
 ist-ticket help
 ```
 
-Show attached files/photos/presentations:
+Show folder and names for attached files/photos/presentations:
 
 ```powershell
 ist-ticket files 6
 ```
 
-Open attached files/photos/presentations:
+Open all files from the ticket folder:
 
 ```powershell
 ist-ticket open 6
+```
+
+Ticket folders live in:
+
+```text
+src/my_python_library/assets/files/ticket_01
+src/my_python_library/assets/files/ticket_02
+...
+src/my_python_library/assets/files/ticket_20
 ```
 
 Alternative launch:

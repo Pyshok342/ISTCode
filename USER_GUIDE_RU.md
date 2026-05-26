@@ -62,7 +62,7 @@ ist-ticket list
 ist-ticket help
 ```
 
-Показать файлы, связанные с билетом:
+Показать папку с файлами билета:
 
 ```cmd
 ist-ticket files 6
@@ -74,7 +74,7 @@ ist-ticket files 6
 ist-ticket images 6
 ```
 
-Открыть файлы билета в стандартных программах Windows:
+Открыть все файлы из папки билета в стандартных программах Windows:
 
 ```cmd
 ist-ticket open 6
@@ -202,6 +202,67 @@ python -m pytest
 ist-ticket 1
 ```
 
+## Где лежат файлы билетов
+
+Основная папка:
+
+```text
+C:\Users\Huawei\Desktop\маркетплейсы\Codex\my_python_library\src\my_python_library\assets\files
+```
+
+Внутри есть 20 папок:
+
+```text
+ticket_01
+ticket_02
+ticket_03
+ticket_04
+ticket_05
+ticket_06
+ticket_07
+ticket_08
+ticket_09
+ticket_10
+ticket_11
+ticket_12
+ticket_13
+ticket_14
+ticket_15
+ticket_16
+ticket_17
+ticket_18
+ticket_19
+ticket_20
+```
+
+Пример:
+
+```text
+Билет 1 -> ticket_01
+Билет 2 -> ticket_02
+Билет 20 -> ticket_20
+```
+
+Команда:
+
+```cmd
+ist-ticket files 1
+```
+
+покажет путь до папки:
+
+```text
+...\assets\files\ticket_01
+```
+
+Команда:
+
+```cmd
+ist-ticket open 1
+```
+
+откроет все файлы из папки `ticket_01`.
+
 ## Как добавить фото, презентацию или другой файл к билету
 
 Поддерживаются разные форматы:
@@ -217,53 +278,27 @@ ist-ticket 1
 .txt
 ```
 
-1. Положи файл в папку:
+1. Положи файл в папку нужного билета:
 
 ```text
-src/my_python_library/assets/files
+C:\Users\Huawei\Desktop\маркетплейсы\Codex\my_python_library\src\my_python_library\assets\files\ticket_01
 ```
 
 Например:
 
 ```text
-src/my_python_library/assets/files/ticket_6_form.png
-src/my_python_library/assets/files/ticket_6_presentation.pptx
+C:\Users\Huawei\Desktop\маркетплейсы\Codex\my_python_library\src\my_python_library\assets\files\ticket_06\ticket_6_form.png
+C:\Users\Huawei\Desktop\маркетплейсы\Codex\my_python_library\src\my_python_library\assets\files\ticket_06\ticket_6_presentation.pptx
 ```
 
-2. Открой файл:
-
-```text
-src/my_python_library/files.py
-```
-
-3. Найди `TICKET_FILES` и добавь связь:
-
-```python
-TICKET_FILES = {
-    6: (
-        TicketFile(6, 3, "ticket_6_form.png", "Форма для задания"),
-        TicketFile(6, 3, "ticket_6_presentation.pptx", "Презентация"),
-    ),
-}
-```
-
-Здесь:
-
-```text
-6 - номер билета
-3 - номер вопроса в билете
-ticket_6_form.png - имя файла
-Форма для задания - подпись
-```
-
-4. Проверь:
+2. Проверь:
 
 ```cmd
 ist-ticket files 6
 ist-ticket open 6
 ```
 
-5. Опубликуй новую версию:
+3. Опубликуй новую версию:
 
 ```cmd
 publish_new_version.bat

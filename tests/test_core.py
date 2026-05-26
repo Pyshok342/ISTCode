@@ -33,6 +33,7 @@ def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["1"]) == 0
     output = capsys.readouterr().out
     assert "Билет №1" in output
+    assert "Папка файлов билета N 1" in output
     assert "ticket_1_question_1_types.png" in output
 
 
@@ -52,12 +53,15 @@ def test_cli_prints_help(capsys: pytest.CaptureFixture[str]) -> None:
 
 def test_ticket_files() -> None:
     formatted = format_ticket_files(1)
+    assert "ticket_01" in formatted
     assert "ticket_1_question_1_types.png" in formatted
     assert "ticket_1_question_1_presentation.pptx" in formatted
 
 
 def test_empty_ticket_files() -> None:
-    assert format_ticket_files(2) == "Файлы для билета N 2 не добавлены."
+    formatted = format_ticket_files(2)
+    assert "ticket_02" in formatted
+    assert "Файлы не добавлены." in formatted
 
 
 def test_cli_prints_empty_files(capsys: pytest.CaptureFixture[str]) -> None:

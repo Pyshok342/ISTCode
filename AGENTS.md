@@ -127,7 +127,7 @@ src/my_python_library/tickets.py
 Ticket file attachments are hardcoded in:
 
 ```text
-src/my_python_library/files.py
+src/my_python_library/assets/files/ticket_01 ... ticket_20
 ```
 
 Bundled attachment files live in:
@@ -135,6 +135,15 @@ Bundled attachment files live in:
 ```text
 src/my_python_library/assets/files
 ```
+
+There are 20 per-ticket folders:
+
+```text
+ticket_01, ticket_02, ..., ticket_20
+```
+
+`ist-ticket files N` prints the ticket folder path and current file names.
+`ist-ticket open N` opens every non-README file in that ticket folder. If the folder has no files, it opens the folder itself.
 
 Public helpers:
 
@@ -157,8 +166,8 @@ When changing tickets:
 
 When adding files/photos/presentations:
 
-1. Put files into `src/my_python_library/assets/files`.
-2. Add `TicketFile(...)` entries to `TICKET_FILES` in `src/my_python_library/files.py`.
+1. Put files into the matching folder, e.g. `src/my_python_library/assets/files/ticket_06`.
+2. Do not edit Python mapping for normal attachments; folder contents are discovered automatically.
 3. Keep filenames ASCII when possible.
 4. Run `python -m pytest`.
 5. Test `ist-ticket files <number>` and `ist-ticket open <number>`.
