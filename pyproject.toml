@@ -1,7 +1,7 @@
 [project]
 name = "my-python-library"
-version = "0.1.0"
-description = "Small example Python library"
+version = "0.2.0"
+description = "Command-line exam ticket helper"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
@@ -19,6 +19,9 @@ dev = [
 [build-system]
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project.scripts]
+ist-ticket = "my_python_library.cli:main"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

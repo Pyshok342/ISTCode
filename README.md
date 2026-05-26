@@ -1,6 +1,6 @@
-# my-python-library
+# ISTCode
 
-Small example Python library.
+Command-line helper for exam tickets.
 
 ## Install for development
 
@@ -12,18 +12,38 @@ python -m pip install -e ".[dev]"
 
 ## Install from GitHub
 
-After publishing this project to GitHub:
+Install on any computer:
 
 ```powershell
-python -m pip install git+https://github.com/USERNAME/REPOSITORY.git
+python -m pip install https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
 ```
 
 ## Use
 
-```python
-from my_python_library import hello
+Show ticket by number:
 
-print(hello("Alex"))
+```powershell
+ist-ticket 1
+```
+
+Show available tickets:
+
+```powershell
+ist-ticket list
+```
+
+Alternative launch:
+
+```powershell
+python -m my_python_library 1
+```
+
+Python import:
+
+```python
+from my_python_library import format_ticket
+
+print(format_ticket(1))
 ```
 
 ## Test
