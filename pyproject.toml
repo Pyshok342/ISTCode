@@ -27,7 +27,7 @@ ist-ticket = "my_python_library.cli:main"
 Repository = "https://github.com/Pyshok342/ISTCode"
 
 [tool.setuptools.package-data]
-my_python_library = ["assets/files/*", "assets/files/**/*", "assets/images/*"]
+my_python_library = ["assets/files/*", "assets/files/**/*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

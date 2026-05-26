@@ -62,7 +62,6 @@ Files attached to a ticket:
 
 ```cmd
 ist-ticket files 6
-ist-ticket images 6
 ist-ticket open 6
 ```
 

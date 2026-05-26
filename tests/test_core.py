@@ -2,6 +2,7 @@ import pytest
 
 from my_python_library import format_ticket, format_ticket_files, get_ticket, hello, list_ticket_files, list_ticket_numbers
 from my_python_library.cli import main
+from my_python_library.files import list_ticket_file_paths, open_ticket_files
 
 
 def test_hello() -> None:
@@ -59,7 +60,8 @@ def test_cli_prints_help(capsys: pytest.CaptureFixture[str]) -> None:
     assert "Команды" in output
     assert "ist-ticket 1" in output
     assert "ist-ticket files 6" in output
-    assert "ist-ticket images 6" in output
+    assert "ist-ticket images 6" not in output
+    assert "ist-ticket open 6" in output
 
 
 def test_ticket_files() -> None:
@@ -83,13 +85,51 @@ def test_cli_prints_empty_files(capsys: pytest.CaptureFixture[str]) -> None:
     assert "не добавлены" not in output
 
 
-def test_cli_images_alias(capsys: pytest.CaptureFixture[str]) -> None:
-    assert main(["images", "1"]) == 0
+def test_cli_rejects_images_alias(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["images", "1"]) == 2
+    assert "нужен номер билета" in capsys.readouterr().err
+
+
+def test_open_ticket_files_tries_every_file(monkeypatch: pytest.MonkeyPatch) -> None:
+    opened: list[str] = []
+
+    def fake_open_path(path) -> str | None:
+        opened.append(path.name)
+        if path.name == "ticket.md":
+            return "boom"
+        return None
+
+    monkeypatch.setattr("my_python_library.files.open_path", fake_open_path)
+    result = open_ticket_files(1)
+    expected_files = [path.name for path in list_ticket_file_paths(1)]
+
+    for filename in expected_files:
+        assert filename in opened
+    assert "ticket_01" in opened
+    assert result.opened == len(expected_files) - 1
+    assert result.folder_opened is True
+    assert result.failed == (("ticket.md", "boom"),)
+
+
+def test_cli_open_reports_failures(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+    def fake_open_path(path) -> str | None:
+        if path.name == "ticket.md":
+            return "boom"
+        return None
+
+    monkeypatch.setattr("my_python_library.files.open_path", fake_open_path)
+    assert main(["open", "1"]) == 0
     output = capsys.readouterr().out
-    assert "ticket_01" in output
-    assert any(file.filename in output for file in list_ticket_files(1))
+    assert "Открыто файлов:" in output
+    assert "Не удалось открыть:" in output
+    assert "ticket.md: boom" in output
 
 
 def test_cli_rejects_bad_ticket(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["999"]) == 2
+    assert "не найден" in capsys.readouterr().err
+
+
+def test_cli_open_rejects_bad_ticket(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["open", "999"]) == 2
     assert "не найден" in capsys.readouterr().err

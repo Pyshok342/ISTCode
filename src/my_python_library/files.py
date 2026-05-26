@@ -21,6 +21,13 @@ class TicketFile:
     title: str = ""
 
 
+@dataclass(frozen=True)
+class OpenTicketFilesResult:
+    opened: int
+    failed: tuple[tuple[str, str], ...] = ()
+    folder_opened: bool = False
+
+
 # Put files for each ticket into src/my_python_library/assets/files/ticket_XX/.
 # Supported examples: .png, .jpg, .pdf, .pptx, .docx, .xlsx, .txt.
 
@@ -91,23 +98,47 @@ def format_ticket_files(ticket_number: int) -> str:
     return "\n".join(lines)
 
 
-def open_ticket_files(ticket_number: int) -> int:
+def open_ticket_files(ticket_number: int) -> OpenTicketFilesResult:
     folder = resolve_ticket_folder_path(ticket_number)
     file_paths = list_ticket_file_paths(ticket_number)
     if not file_paths:
-        open_path(folder)
-        return 0
+        folder_error = open_path(folder)
+        return OpenTicketFilesResult(0, folder_opened=folder_error is None)
 
+    opened = 0
+    failed: list[tuple[str, str]] = []
     for path in file_paths:
-        open_path(path)
+        error = open_path(path)
+        if error is None:
+            opened += 1
+        else:
+            failed.append((path.name, error))
 
-    return len(file_paths)
+    folder_error = open_path(folder)
+    if folder_error is not None:
+        failed.append((folder.name, folder_error))
+
+    return OpenTicketFilesResult(
+        opened,
+        failed=tuple(failed),
+        folder_opened=folder_error is None,
+    )
 
 
-def open_path(path: Path) -> None:
+def open_path(path: Path) -> str | None:
+    try:
+        return _open_path(path)
+    except OSError as exc:
+        return str(exc)
+
+
+def _open_path(path: Path) -> str | None:
     if sys.platform.startswith("win"):
         os.startfile(path)  # type: ignore[attr-defined]
-    elif sys.platform == "darwin":
-        subprocess.run(["open", str(path)], check=False)
-    else:
-        subprocess.run(["xdg-open", str(path)], check=False)
+        return None
+
+    command = ["open", str(path)] if sys.platform == "darwin" else ["xdg-open", str(path)]
+    completed = subprocess.run(command, check=False)
+    if completed.returncode:
+        return f"exit code {completed.returncode}"
+    return None

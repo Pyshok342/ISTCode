@@ -68,12 +68,6 @@ ist-ticket help
 ist-ticket files 6
 ```
 
-Для фото можно писать так же:
-
-```cmd
-ist-ticket images 6
-```
-
 Открыть все файлы из папки билета в стандартных программах Windows:
 
 ```cmd
