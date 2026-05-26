@@ -58,6 +58,14 @@ Help:
 ist-ticket help
 ```
 
+Files attached to a ticket:
+
+```cmd
+ist-ticket files 6
+ist-ticket images 6
+ist-ticket open 6
+```
+
 Fallback help:
 
 ```cmd
@@ -114,10 +122,28 @@ Ticket data is hardcoded in:
 src/my_python_library/tickets.py
 ```
 
+Ticket file attachments are hardcoded in:
+
+```text
+src/my_python_library/files.py
+```
+
+Bundled attachment files live in:
+
+```text
+src/my_python_library/assets/files
+```
+
 Public helpers:
 
 ```python
 from my_python_library import format_ticket, get_ticket, list_ticket_numbers
+```
+
+File helpers:
+
+```python
+from my_python_library import format_ticket_files, list_ticket_files, list_tickets_with_files
 ```
 
 When changing tickets:
@@ -126,6 +152,15 @@ When changing tickets:
 2. Keep ticket numbers sequential unless user asks otherwise.
 3. Run `python -m pytest`.
 4. Test CLI with `ist-ticket 1`.
+
+When adding files/photos/presentations:
+
+1. Put files into `src/my_python_library/assets/files`.
+2. Add `TicketFile(...)` entries to `TICKET_FILES` in `src/my_python_library/files.py`.
+3. Keep filenames ASCII when possible.
+4. Run `python -m pytest`.
+5. Test `ist-ticket files <number>` and `ist-ticket open <number>`.
+6. Bump `version` in `pyproject.toml` before PyPI publish.
 
 When changing CLI help:
 

@@ -50,6 +50,18 @@ Show help:
 ist-ticket help
 ```
 
+Show attached files/photos/presentations:
+
+```powershell
+ist-ticket files 6
+```
+
+Open attached files/photos/presentations:
+
+```powershell
+ist-ticket open 6
+```
+
 Alternative launch:
 
 ```powershell

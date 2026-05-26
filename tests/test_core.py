@@ -1,6 +1,6 @@
 import pytest
 
-from my_python_library import format_ticket, get_ticket, hello, list_ticket_numbers
+from my_python_library import format_ticket, format_ticket_files, get_ticket, hello, list_ticket_numbers
 from my_python_library.cli import main
 
 
@@ -44,6 +44,22 @@ def test_cli_prints_help(capsys: pytest.CaptureFixture[str]) -> None:
     output = capsys.readouterr().out
     assert "Команды" in output
     assert "ist-ticket 1" in output
+    assert "ist-ticket files 6" in output
+    assert "ist-ticket images 6" in output
+
+
+def test_empty_ticket_files() -> None:
+    assert format_ticket_files(1) == "Файлы для билета N 1 не добавлены."
+
+
+def test_cli_prints_empty_files(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["files", "1"]) == 0
+    assert "не добавлены" in capsys.readouterr().out
+
+
+def test_cli_images_alias(capsys: pytest.CaptureFixture[str]) -> None:
+    assert main(["images", "1"]) == 0
+    assert "не добавлены" in capsys.readouterr().out
 
 
 def test_cli_rejects_bad_ticket(capsys: pytest.CaptureFixture[str]) -> None:
