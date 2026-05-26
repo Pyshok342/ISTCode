@@ -3,13 +3,13 @@
 После публикации установка будет короткой:
 
 ```cmd
-pip install istcode
+pip install --upgrade --force-reinstall --no-cache-dir istcode
 ```
 
 или надежнее:
 
 ```cmd
-python -m pip install istcode
+python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
 ```
 
 ## Способ 1. Через GitHub Actions без токена
@@ -71,7 +71,7 @@ https://pypi.org/project/istcode/
 Проверка:
 
 ```cmd
-python -m pip install --upgrade istcode
+python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
 ist-ticket 1
 ```
 
@@ -187,7 +187,7 @@ password
 На любом компьютере:
 
 ```cmd
-python -m pip install istcode
+python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
 ist-ticket 1
 ```
 

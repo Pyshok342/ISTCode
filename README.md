@@ -21,13 +21,13 @@ python -m pip install -e ".[dev]"
 Install on any computer:
 
 ```powershell
-python -m pip install https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
+python -m pip install --upgrade --force-reinstall --no-cache-dir https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
 ```
 
 After publishing to PyPI:
 
 ```powershell
-python -m pip install istcode
+python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
 ```
 
 ## Use

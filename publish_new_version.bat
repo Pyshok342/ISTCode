@@ -32,10 +32,15 @@ if errorlevel 1 (
 
 echo.
 echo Checking package build...
+if exist "build" rmdir /s /q "build"
+if errorlevel 1 exit /b 1
+if exist "dist" rmdir /s /q "dist"
+if errorlevel 1 exit /b 1
+
 .venv\Scripts\python.exe -m build
 if errorlevel 1 exit /b 1
 
-.venv\Scripts\python.exe -m twine check dist\istcode-*
+.venv\Scripts\python.exe -m twine check dist\istcode-%VERSION%*
 if errorlevel 1 exit /b 1
 
 echo.
@@ -100,7 +105,7 @@ echo   https://github.com/Pyshok342/ISTCode/actions/workflows/publish.yml
 :done
 echo.
 echo After workflow succeeds, update on any computer:
-echo   python -m pip install --upgrade istcode
+echo   python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
 echo.
 echo Press any key to close.
 pause >nul

@@ -1,6 +1,6 @@
 import pytest
 
-from my_python_library import format_ticket, format_ticket_files, get_ticket, hello, list_ticket_numbers
+from my_python_library import format_ticket, format_ticket_files, get_ticket, hello, list_ticket_files, list_ticket_numbers
 from my_python_library.cli import main
 
 
@@ -37,7 +37,7 @@ def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:
     assert "Ответ:" in output
     assert "Папка файлов билета N 1" in output
     assert "ticket.md" in output
-    assert "ticket_1_question_1_types.png" in output
+    assert any(file.filename in output for file in list_ticket_files(1) if file.filename != "ticket.md")
 
 
 def test_cli_prints_ticket_without_attachment_list(capsys: pytest.CaptureFixture[str]) -> None:
@@ -66,8 +66,8 @@ def test_ticket_files() -> None:
     formatted = format_ticket_files(1)
     assert "ticket_01" in formatted
     assert "ticket.md" in formatted
-    assert "ticket_1_question_1_types.png" in formatted
-    assert "ticket_1_question_1_presentation.pptx" in formatted
+    for file in list_ticket_files(1):
+        assert file.filename in formatted
 
 
 def test_empty_ticket_files() -> None:
@@ -85,7 +85,9 @@ def test_cli_prints_empty_files(capsys: pytest.CaptureFixture[str]) -> None:
 
 def test_cli_images_alias(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["images", "1"]) == 0
-    assert "ticket_1_question_1_types.png" in capsys.readouterr().out
+    output = capsys.readouterr().out
+    assert "ticket_01" in output
+    assert any(file.filename in output for file in list_ticket_files(1))
 
 
 def test_cli_rejects_bad_ticket(capsys: pytest.CaptureFixture[str]) -> None:

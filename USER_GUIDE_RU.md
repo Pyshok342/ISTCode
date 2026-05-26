@@ -17,7 +17,7 @@ ist-ticket 1
 Если библиотека уже опубликована на PyPI:
 
 ```cmd
-python -m pip install istcode
+python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
 ```
 
 Если ставишь с GitHub:
@@ -39,7 +39,7 @@ Add python.exe to PATH
 3. Установи библиотеку с GitHub:
 
 ```cmd
-python -m pip install --upgrade https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
+python -m pip install --upgrade --force-reinstall --no-cache-dir https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
 ```
 
 ## Как пользоваться
@@ -123,13 +123,13 @@ ist-ticket 20
 Если библиотека стоит через PyPI:
 
 ```cmd
-python -m pip install --upgrade istcode
+python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
 ```
 
 Если библиотека стоит через GitHub:
 
 ```cmd
-python -m pip install --upgrade https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
+python -m pip install --upgrade --force-reinstall --no-cache-dir https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
 ```
 
 Потом снова:
@@ -345,7 +345,7 @@ git push
 После этого другой компьютер сможет обновиться командой:
 
 ```cmd
-python -m pip install --upgrade https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
+python -m pip install --upgrade --force-reinstall --no-cache-dir https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
 ```
 
 ## Частые ошибки
