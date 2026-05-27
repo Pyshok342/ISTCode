@@ -76,6 +76,14 @@ Open all files from the ticket folder:
 ist-ticket open 6
 ```
 
+Search across ticket files:
+
+```powershell
+ist-ticket search "метрики регрессии"
+ist-ticket search sklearn metrics
+ist-ticket search "метрики регрессии" --show
+```
+
 Ticket folders live in:
 
 ```text

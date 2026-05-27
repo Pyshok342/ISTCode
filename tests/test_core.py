@@ -1,7 +1,15 @@
 import pytest
 from docx import Document
 
-from my_python_library import format_ticket, format_ticket_files, get_ticket, hello, list_ticket_files, list_ticket_numbers
+from my_python_library import (
+    format_ticket,
+    format_ticket_files,
+    get_ticket,
+    hello,
+    list_ticket_files,
+    list_ticket_numbers,
+    search_tickets,
+)
 from my_python_library.cli import main
 from my_python_library.files import list_ticket_file_paths, open_ticket_files
 
@@ -101,6 +109,51 @@ def test_format_ticket_avoids_long_border_for_single_line_code(monkeypatch: pyte
     assert 'import React, { useState } from "react";' in formatted
     assert "+-" not in formatted
     assert "| import React" not in formatted
+
+
+def test_search_tickets_finds_docx_phrase(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
+    folder = tmp_path / "ticket_01"
+    folder.mkdir()
+    document = Document()
+    document.add_paragraph("Regression metrics include MAE and RMSE.")
+    document.save(folder / "ticket.docx")
+
+    monkeypatch.setattr("my_python_library.search.list_ticket_numbers", lambda: [1])
+    monkeypatch.setattr("my_python_library.search.list_ticket_file_paths", lambda number: (folder / "ticket.docx",))
+
+    results = search_tickets("metrics include")
+    assert len(results) == 1
+    assert results[0].ticket_number == 1
+    assert results[0].filename == "ticket.docx"
+    assert "Regression metrics include MAE" in results[0].snippet
+
+
+def test_search_tickets_matches_words_across_punctuation(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
+    folder = tmp_path / "ticket_01"
+    folder.mkdir()
+    (folder / "ticket.md").write_text("from sklearn.metrics import mean_absolute_error", encoding="utf-8")
+
+    monkeypatch.setattr("my_python_library.search.list_ticket_numbers", lambda: [1])
+    monkeypatch.setattr("my_python_library.search.list_ticket_file_paths", lambda number: (folder / "ticket.md",))
+
+    results = search_tickets("sklearn metrics")
+    assert len(results) == 1
+    assert results[0].filename == "ticket.md"
+
+
+def test_cli_search_prints_commands(monkeypatch: pytest.MonkeyPatch, tmp_path, capsys: pytest.CaptureFixture[str]) -> None:
+    folder = tmp_path / "ticket_01"
+    folder.mkdir()
+    (folder / "ticket.md").write_text("Find this phrase inside markdown.", encoding="utf-8")
+
+    monkeypatch.setattr("my_python_library.search.list_ticket_numbers", lambda: [1])
+    monkeypatch.setattr("my_python_library.search.list_ticket_file_paths", lambda number: (folder / "ticket.md",))
+
+    assert main(["search", "this", "phrase"]) == 0
+    output = capsys.readouterr().out
+    assert "ticket.md" in output
+    assert "ist-ticket 1" in output
+    assert "ist-ticket open 1" in output
 
 
 def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:

@@ -74,6 +74,14 @@ ist-ticket files 6
 ist-ticket open 6
 ```
 
+Найти фразу или несколько слов в файлах билетов:
+
+```cmd
+ist-ticket search "метрики регрессии"
+ist-ticket search sklearn metrics
+ist-ticket search "метрики регрессии" --show
+```
+
 Если команда `ist-ticket` не найдена, запускай так:
 
 ```cmd
