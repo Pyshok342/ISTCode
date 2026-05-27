@@ -55,6 +55,32 @@ def test_format_ticket_prefers_docx(monkeypatch: pytest.MonkeyPatch, tmp_path) -
     assert "| AI   | 42    |" in formatted
 
 
+def test_format_ticket_preserves_code_from_docx(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
+    folder = tmp_path / "ticket_01"
+    folder.mkdir()
+    document = Document()
+    document.add_paragraph("Ticket from Word")
+    code_table = document.add_table(rows=1, cols=1)
+    code_table.cell(0, 0).text = "\n".join(
+        [
+            "from sklearn.metrics import (",
+            "    mean_absolute_error, mean_squared_error,",
+            ")",
+            "",
+            "value = 42",
+            'print(f"Value: {value}")',
+        ]
+    )
+    document.save(folder / "ticket.docx")
+
+    monkeypatch.setattr("my_python_library.tickets.resolve_ticket_folder_path", lambda number: folder)
+
+    formatted = format_ticket(1)
+    assert "from sklearn.metrics import (\n    mean_absolute_error, mean_squared_error,\n)" in formatted
+    assert "\nvalue = 42\n" in formatted
+    assert '| from sklearn.metrics import (' not in formatted
+
+
 def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:
     assert main(["1"]) == 0
     output = capsys.readouterr().out
