@@ -69,6 +69,7 @@ def test_format_ticket_preserves_code_from_docx(monkeypatch: pytest.MonkeyPatch,
             "",
             "value = 42",
             'print(f"Value: {value}")',
+            'print(f"MAE:              {value:.4f}")',
         ]
     )
     document.save(folder / "ticket.docx")
@@ -78,7 +79,28 @@ def test_format_ticket_preserves_code_from_docx(monkeypatch: pytest.MonkeyPatch,
     formatted = format_ticket(1)
     assert "from sklearn.metrics import (\n    mean_absolute_error, mean_squared_error,\n)" in formatted
     assert "\nvalue = 42\n" in formatted
+    assert 'print(f"MAE: {value:.4f}")' in formatted
+    assert 'print(f"MAE:              {value:.4f}")' not in formatted
     assert '| from sklearn.metrics import (' not in formatted
+
+
+def test_format_ticket_avoids_long_border_for_single_line_code(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
+    folder = tmp_path / "ticket_01"
+    folder.mkdir()
+    document = Document()
+    code_table = document.add_table(rows=1, cols=1)
+    code_table.cell(0, 0).text = (
+        'import React, { useState } from "react"; '
+        "export default function Counter() { return <button>Click</button>; }"
+    )
+    document.save(folder / "ticket.docx")
+
+    monkeypatch.setattr("my_python_library.tickets.resolve_ticket_folder_path", lambda number: folder)
+
+    formatted = format_ticket(1)
+    assert 'import React, { useState } from "react";' in formatted
+    assert "+-" not in formatted
+    assert "| import React" not in formatted
 
 
 def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:

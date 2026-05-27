@@ -13,6 +13,7 @@ from docx.text.paragraph import Paragraph
 
 ASSIGNMENT_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*\s*=")
 FUNCTION_CALL_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*\(.*\)$")
+CODE_VALUE_PADDING_RE = re.compile(r"(?<=\S) {2,}(?=\{)")
 
 
 def read_docx_text(path: Path) -> str:
@@ -81,7 +82,7 @@ def is_code_table(rows: list[list[list[str]]]) -> bool:
     lines = flatten_single_column_rows(rows)
     meaningful_lines = [line for line in lines if line.strip()]
     if len(meaningful_lines) < 2:
-        return False
+        return len(meaningful_lines) == 1 and len(meaningful_lines[0]) > 80 and looks_like_code_line(meaningful_lines[0])
 
     code_line_count = sum(looks_like_code_line(line) for line in meaningful_lines)
     return code_line_count >= max(2, len(meaningful_lines) // 3)
@@ -105,11 +106,25 @@ def looks_like_code_line(line: str) -> bool:
 
     code_prefixes = (
         "#",
+        "//",
+        "/*",
+        "*/",
         ")",
+        "{",
+        "}",
+        "<",
+        "</",
         "import ",
         "from ",
+        "export ",
+        "const ",
+        "let ",
+        "var ",
         "def ",
         "class ",
+        "function ",
+        "interface ",
+        "type ",
         "return ",
         "print(",
         "for ",
@@ -130,6 +145,8 @@ def looks_like_code_line(line: str) -> bool:
         return True
     if ASSIGNMENT_RE.match(stripped):
         return True
+    if stripped.endswith(("{", "}", ";", ">", "/>", ");", "};")):
+        return True
     return FUNCTION_CALL_RE.match(stripped) is not None
 
 
@@ -139,4 +156,8 @@ def format_code_table(rows: list[list[list[str]]]) -> str:
         lines.pop(0)
     while lines and not lines[-1].strip():
         lines.pop()
-    return "\n".join(lines)
+    return "\n".join(normalize_code_line(line) for line in lines)
+
+
+def normalize_code_line(line: str) -> str:
+    return CODE_VALUE_PADDING_RE.sub(" ", line)
