@@ -95,7 +95,7 @@ Build:
 python -m build
 ```
 
-Before publishing a new PyPI release, bump `version` in `pyproject.toml`; PyPI never accepts the same version twice. Check current PyPI versions when unsure:
+Before publishing a new PyPI release, use `publish_new_version.bat`; it bumps the last number in `pyproject.toml` automatically after tests and GitHub push preflight pass. PyPI never accepts the same version twice. Check current PyPI versions when unsure:
 
 ```cmd
 python -m pip index versions istcode
@@ -110,15 +110,17 @@ publish_new_version.bat
 The helper:
 
 1. Runs tests.
-2. Cleans `build/` and `dist/`.
-3. Builds package.
-4. Runs `twine check` only for the current version artifacts.
-5. Builds commit message automatically as `Publish istcode <version>`.
-6. Asks only `Continue? [y/n]`.
-7. Commits changes.
-8. Pushes to GitHub.
-9. Starts `publish.yml` via `gh workflow run` if GitHub CLI is installed.
-10. Otherwise prints the GitHub Actions URL for manual `Run workflow`.
+2. Checks GitHub push access.
+3. Shows the version bump and asks only `Continue? [y/n]`.
+4. Bumps the last number in `pyproject.toml`.
+5. Cleans `build/` and `dist/`.
+6. Builds package.
+7. Runs `twine check` only for the current version artifacts.
+8. Builds commit message automatically as `Publish istcode <version>`.
+9. Commits changes.
+10. Pushes to GitHub.
+11. Starts `publish.yml` via `gh workflow run` if GitHub CLI is installed.
+12. Otherwise prints the GitHub Actions URL for manual `Run workflow`.
 
 If modifying release flow, keep `publish_new_version.bat`, `PUBLISH_TO_PYPI.md`, `USER_GUIDE_RU.md`, and `.github/workflows/publish.yml` in sync.
 
@@ -190,7 +192,7 @@ When adding files/photos/presentations:
 4. Keep filenames ASCII when possible.
 5. Run `python -m pytest`.
 6. Test `ist-ticket files <number>` and `ist-ticket open <number>`.
-7. Bump `version` in `pyproject.toml` before PyPI publish.
+7. Let `publish_new_version.bat` bump `version` in `pyproject.toml` before PyPI publish.
 
 When changing CLI help:
 

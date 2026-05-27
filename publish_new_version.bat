@@ -28,8 +28,16 @@ if errorlevel 1 goto fail
 
 echo Checking package version...
 set "STEP=reading package version"
-for /f "delims=" %%v in ('.venv\Scripts\python.exe -c "import tomllib; print(tomllib.load(open('pyproject.toml','rb'))['project']['version'])"') do set VERSION=%%v
-echo Version: %VERSION%
+for /f "tokens=1,2 delims=|" %%v in ('.venv\Scripts\python.exe scripts\bump_version.py --next') do (
+  set "CURRENT_VERSION=%%v"
+  set "VERSION=%%w"
+)
+if not defined VERSION (
+  echo ERROR: could not calculate next package version.
+  goto fail
+)
+echo Current version: %CURRENT_VERSION%
+echo Next version:    %VERSION%
 if errorlevel 1 goto fail
 
 echo.
@@ -41,23 +49,6 @@ if errorlevel 1 (
   echo ERROR: tests failed. Fix tests before publish.
   goto fail
 )
-
-echo.
-echo Checking package build...
-set "STEP=cleaning build folder"
-if exist "build" rmdir /s /q "build"
-if errorlevel 1 goto fail
-set "STEP=cleaning dist folder"
-if exist "dist" rmdir /s /q "dist"
-if errorlevel 1 goto fail
-
-set "STEP=building package"
-.venv\Scripts\python.exe -m build
-if errorlevel 1 goto fail
-
-set "STEP=checking package with twine"
-.venv\Scripts\python.exe -m twine check dist\istcode-%VERSION%*
-if errorlevel 1 goto fail
 
 echo.
 echo Git status:
@@ -93,6 +84,9 @@ if errorlevel 1 (
 
 echo.
 set COMMIT_MSG=Publish istcode %VERSION%
+echo Version bump:
+echo   %CURRENT_VERSION% -^> %VERSION%
+echo.
 echo Commit message:
 echo   %COMMIT_MSG%
 echo.
@@ -101,6 +95,35 @@ if /i not "%CONFIRM%"=="y" (
   echo Cancelled.
   goto cancelled
 )
+
+echo.
+echo Bumping package version...
+set "STEP=bumping package version"
+.venv\Scripts\python.exe scripts\bump_version.py --write "%VERSION%"
+if errorlevel 1 goto fail
+
+echo.
+echo Checking package build...
+set "STEP=cleaning build folder"
+if exist "build" rmdir /s /q "build"
+if errorlevel 1 goto fail
+set "STEP=cleaning dist folder"
+if exist "dist" rmdir /s /q "dist"
+if errorlevel 1 goto fail
+
+set "STEP=building package"
+.venv\Scripts\python.exe -m build
+if errorlevel 1 goto fail
+
+set "STEP=checking package with twine"
+.venv\Scripts\python.exe -m twine check dist\istcode-%VERSION%*
+if errorlevel 1 goto fail
+
+echo.
+echo Git status after version bump:
+set "STEP=reading git status"
+git status --short
+if errorlevel 1 goto fail
 
 set "STEP=staging files"
 git add .

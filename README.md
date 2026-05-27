@@ -120,6 +120,8 @@ python -m build
 publish_new_version.bat
 ```
 
+The helper automatically bumps the last number in `pyproject.toml` before it builds and pushes the release.
+
 ## Publish
 
 First publish to TestPyPI:
