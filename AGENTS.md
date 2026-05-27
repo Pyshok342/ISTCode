@@ -58,6 +58,8 @@ Help:
 ist-ticket help
 ```
 
+Do not add an `images` command or image-specific public API. It was removed because attachments can be any file type.
+
 Files attached to a ticket:
 
 ```cmd
@@ -93,7 +95,11 @@ Build:
 python -m build
 ```
 
-Before publishing a new PyPI release, bump `version` in `pyproject.toml`; PyPI never accepts the same version twice.
+Before publishing a new PyPI release, bump `version` in `pyproject.toml`; PyPI never accepts the same version twice. Check current PyPI versions when unsure:
+
+```cmd
+python -m pip index versions istcode
+```
 
 User-facing publish helper:
 
@@ -104,29 +110,34 @@ publish_new_version.bat
 The helper:
 
 1. Runs tests.
-2. Builds package.
-3. Runs `twine check`.
-4. Builds commit message automatically as `Publish istcode <version>`.
-5. Asks only `Continue? [y/n]`.
-6. Commits changes.
-7. Pushes to GitHub.
-8. Starts `publish.yml` via `gh workflow run` if GitHub CLI is installed.
-9. Otherwise prints the GitHub Actions URL for manual `Run workflow`.
+2. Cleans `build/` and `dist/`.
+3. Builds package.
+4. Runs `twine check` only for the current version artifacts.
+5. Builds commit message automatically as `Publish istcode <version>`.
+6. Asks only `Continue? [y/n]`.
+7. Commits changes.
+8. Pushes to GitHub.
+9. Starts `publish.yml` via `gh workflow run` if GitHub CLI is installed.
+10. Otherwise prints the GitHub Actions URL for manual `Run workflow`.
 
 If modifying release flow, keep `publish_new_version.bat`, `PUBLISH_TO_PYPI.md`, `USER_GUIDE_RU.md`, and `.github/workflows/publish.yml` in sync.
 
 ## Ticket Data
 
-Editable ticket text lives in `ticket.md` files inside each ticket folder:
+Preferred editable ticket text lives in Word `.docx` files inside each ticket folder:
 
 ```text
-src/my_python_library/assets/files/ticket_01/ticket.md
-src/my_python_library/assets/files/ticket_02/ticket.md
+src/my_python_library/assets/files/ticket_01/ticket.docx
+src/my_python_library/assets/files/ticket_02/ticket.docx
 ...
-src/my_python_library/assets/files/ticket_20/ticket.md
+src/my_python_library/assets/files/ticket_20/ticket.docx
 ```
 
-`src/my_python_library/tickets.py` remains the fallback source when `ticket.md` is missing.
+`ticket.md` remains a fallback when `ticket.docx` is missing.
+`src/my_python_library/tickets.py` remains the final fallback source when both `ticket.docx` and `ticket.md` are missing.
+
+`ist-ticket N` reads `ticket.docx` with `python-docx`. Paragraphs are printed as plain text. Tables are rendered as console-friendly ASCII grids.
+Old binary `.doc` files are not supported unless a converter is added later.
 
 Ticket file attachments are stored in:
 
@@ -147,7 +158,9 @@ ticket_01, ticket_02, ..., ticket_20
 ```
 
 `ist-ticket files N` prints the ticket folder path and current file names.
-`ist-ticket open N` opens every non-README file in that ticket folder. If the folder has no files, it opens the folder itself.
+`ist-ticket open N` tries to open every non-README file in that ticket folder, keeps going if one file fails, reports failed files, and also opens the ticket folder so the user can see all contents.
+
+Folder contents are intentionally dynamic. Do not hardcode attachment filenames in tests or docs. A ticket folder may contain any mix of `.md`, `.jpg`, `.png`, `.pptx`, `.pdf`, `.docx`, `.xlsx`, `.txt`, or other normal user files.
 
 Public helpers:
 
@@ -163,19 +176,21 @@ from my_python_library import format_ticket_files, list_ticket_files, list_ticke
 
 When changing tickets:
 
-1. Edit the matching `ticket.md`, for example `src/my_python_library/assets/files/ticket_06/ticket.md`.
-2. Keep ticket numbers sequential unless user asks otherwise.
-3. Run `python -m pytest`.
-4. Test CLI with `ist-ticket 1`.
+1. Prefer editing the matching `ticket.docx`, for example `src/my_python_library/assets/files/ticket_06/ticket.docx`.
+2. If no Word file exists, edit fallback `ticket.md`.
+3. Keep ticket numbers sequential unless user asks otherwise.
+4. Run `python -m pytest`.
+5. Test CLI with `ist-ticket 1`.
 
 When adding files/photos/presentations:
 
 1. Put files into the matching folder, e.g. `src/my_python_library/assets/files/ticket_06`.
 2. Do not edit Python mapping for normal attachments; folder contents are discovered automatically.
-3. Keep filenames ASCII when possible.
-4. Run `python -m pytest`.
-5. Test `ist-ticket files <number>` and `ist-ticket open <number>`.
-6. Bump `version` in `pyproject.toml` before PyPI publish.
+3. Tests must assert current discovered files, not a specific filename such as `ticket_1_question_1_types.png`.
+4. Keep filenames ASCII when possible.
+5. Run `python -m pytest`.
+6. Test `ist-ticket files <number>` and `ist-ticket open <number>`.
+7. Bump `version` in `pyproject.toml` before PyPI publish.
 
 When changing CLI help:
 
@@ -210,13 +225,13 @@ src/my_python_library.egg-info/
 Current user-facing install command:
 
 ```cmd
-python -m pip install istcode
+python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
 ```
 
 GitHub fallback:
 
 ```cmd
-python -m pip install --upgrade https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
+python -m pip install --upgrade --force-reinstall --no-cache-dir https://github.com/Pyshok342/ISTCode/archive/refs/heads/main.zip
 ```
 
 After install:

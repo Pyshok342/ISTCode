@@ -38,13 +38,19 @@ Show ticket by number:
 ist-ticket 1
 ```
 
-The command reads ticket text from:
+The command first reads ticket text from Word:
+
+```text
+src/my_python_library/assets/files/ticket_01/ticket.docx
+```
+
+If `ticket.docx` is missing, it reads the fallback file:
 
 ```text
 src/my_python_library/assets/files/ticket_01/ticket.md
 ```
 
-Edit this file to change ticket questions or answers.
+Tables from `ticket.docx` are printed as console-friendly ASCII tables.
 
 Show available tickets:
 
@@ -79,7 +85,8 @@ src/my_python_library/assets/files/ticket_02
 src/my_python_library/assets/files/ticket_20
 ```
 
-Each folder contains `ticket.md`. This is the editable text shown by `ist-ticket N`.
+Each folder can contain `ticket.docx`. This is the preferred editable Word file shown by `ist-ticket N`.
+If there is no `ticket.docx`, `ticket.md` is used as fallback.
 
 Alternative launch:
 

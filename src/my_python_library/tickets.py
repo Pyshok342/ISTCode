@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .files import TICKET_TEXT_FILENAME, resolve_ticket_folder_path
+from .files import TICKET_TEXT_FILENAME, TICKET_WORD_FILENAME, resolve_ticket_folder_path
+from .word import read_docx_text
 
 
 @dataclass(frozen=True)
@@ -189,6 +190,10 @@ def get_ticket(number: int) -> Ticket:
 
 
 def format_ticket(number: int) -> str:
+    ticket_word_text = read_ticket_word_text(number)
+    if ticket_word_text is not None:
+        return ticket_word_text
+
     ticket_text = read_ticket_text(number)
     if ticket_text is not None:
         return ticket_text
@@ -201,6 +206,18 @@ def format_ticket(number: int) -> str:
 
 def resolve_ticket_text_path(number: int):
     return resolve_ticket_folder_path(number) / TICKET_TEXT_FILENAME
+
+
+def resolve_ticket_word_path(number: int):
+    return resolve_ticket_folder_path(number) / TICKET_WORD_FILENAME
+
+
+def read_ticket_word_text(number: int) -> str | None:
+    path = resolve_ticket_word_path(number)
+    if not path.exists():
+        return None
+    text = read_docx_text(path)
+    return text or None
 
 
 def read_ticket_text(number: int) -> str | None:

@@ -1,4 +1,5 @@
 import pytest
+from docx import Document
 
 from my_python_library import format_ticket, format_ticket_files, get_ticket, hello, list_ticket_files, list_ticket_numbers
 from my_python_library.cli import main
@@ -21,7 +22,7 @@ def test_get_ticket() -> None:
 
 def test_format_ticket() -> None:
     formatted = format_ticket(20)
-    assert formatted.startswith("# Билет №20")
+    assert formatted.startswith("Билет №20")
     assert "Проблемы интеллектуального права" in formatted
     assert "Ответ:" in formatted
 
@@ -29,6 +30,29 @@ def test_format_ticket() -> None:
 def test_missing_ticket() -> None:
     with pytest.raises(KeyError):
         get_ticket(999)
+
+
+def test_format_ticket_prefers_docx(monkeypatch: pytest.MonkeyPatch, tmp_path) -> None:
+    folder = tmp_path / "ticket_01"
+    folder.mkdir()
+    document = Document()
+    document.add_paragraph("Ticket from Word")
+    document.add_paragraph("Question one")
+    table = document.add_table(rows=2, cols=2)
+    table.cell(0, 0).text = "Term"
+    table.cell(0, 1).text = "Value"
+    table.cell(1, 0).text = "AI"
+    table.cell(1, 1).text = "42"
+    document.save(folder / "ticket.docx")
+    (folder / "ticket.md").write_text("Ticket from Markdown", encoding="utf-8")
+
+    monkeypatch.setattr("my_python_library.tickets.resolve_ticket_folder_path", lambda number: folder)
+
+    formatted = format_ticket(1)
+    assert "Ticket from Word" in formatted
+    assert "Ticket from Markdown" not in formatted
+    assert "| Term | Value |" in formatted
+    assert "| AI   | 42    |" in formatted
 
 
 def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:
