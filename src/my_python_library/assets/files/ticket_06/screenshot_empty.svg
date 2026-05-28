@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 420" width="580" height="420">
+  <!-- Тень окна -->
+  <rect x="3" y="3" width="574" height="414" rx="4" fill="#888888" opacity="0.25"/>
+
+  <!-- Сам корпус окна -->
+  <rect x="0" y="0" width="574" height="414" rx="4" fill="#D6DFEE" stroke="#7A7A7A" stroke-width="1"/>
+
+  <!-- Заголовок окна (titlebar) -->
+  <rect x="0" y="0" width="574" height="30" rx="4" fill="#E8E8E8" stroke="#7A7A7A" stroke-width="1"/>
+  <rect x="0" y="26" width="574" height="4" fill="#E8E8E8" stroke="none"/>
+  <text x="14" y="19.0" font-family="DejaVu Sans" font-size="12"
+        font-weight="600" fill="#2C2C2A">Учёт студентов</text>
+
+  <!-- Кнопки управления окном (упрощённо) -->
+  <circle cx="548" cy="15" r="6" fill="#E74C3C"/>
+  <circle cx="528" cy="15" r="6" fill="#F39C12"/>
+  <circle cx="508" cy="15" r="6" fill="#2ECC71"/>
+
+  <text x="50" y="79.0" font-family="DejaVu Sans" font-size="13"
+        fill="#1A1A1A">Фамилия:</text>
+  <rect x="215" y="60" width="280" height="28"
+        fill="#FFFFFF" stroke="#777777" stroke-width="1"/>
+  <text x="50" y="123.0" font-family="DejaVu Sans" font-size="13"
+        fill="#1A1A1A">Имя:</text>
+  <rect x="215" y="104" width="280" height="28"
+        fill="#FFFFFF" stroke="#777777" stroke-width="1"/>
+  <text x="50" y="167.0" font-family="DejaVu Sans" font-size="13"
+        fill="#1A1A1A">Отчество:</text>
+  <rect x="215" y="148" width="280" height="28"
+        fill="#FFFFFF" stroke="#777777" stroke-width="1"/>
+  <text x="50" y="211.0" font-family="DejaVu Sans" font-size="13"
+        fill="#1A1A1A">Дата рождения:</text>
+  <rect x="215" y="192" width="280" height="28"
+        fill="#FFFFFF" stroke="#777777" stroke-width="1"/>
+  <text x="50" y="255.0" font-family="DejaVu Sans" font-size="13"
+        fill="#1A1A1A">Номер группы:</text>
+  <rect x="215" y="236" width="280" height="28"
+        fill="#FFFFFF" stroke="#777777" stroke-width="1"/>
+  <rect x="185.0" y="300" width="90" height="32" rx="3"
+        fill="#5B8FBE" stroke="#3A6589" stroke-width="1"/>
+  <text x="230.0" y="321.0" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="13" font-weight="700"
+        fill="#FFFFFF">Ввод</text>
+  <rect x="299.0" y="300" width="90" height="32" rx="3"
+        fill="#5B8FBE" stroke="#3A6589" stroke-width="1"/>
+  <text x="344.0" y="321.0" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="13" font-weight="700"
+        fill="#FFFFFF">Выход</text>
+</svg>

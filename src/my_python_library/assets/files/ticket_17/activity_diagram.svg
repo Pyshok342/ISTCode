@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1400" width="1100" height="1400">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9 z" fill="#374151"/>
+    </marker>
+    <marker id="open-arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9" fill="none" stroke="#374151" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  <text x="550.0" y="28" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="16" font-weight="700"
+        fill="#1F2937">Диаграмма деятельности: «Изготовление шкафа-купе на заказ»</text>
+  <text x="550.0" y="48" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-style="italic"
+        fill="#666666">Activity Diagram (UML)</text>
+  <circle cx="550" cy="85" r="12" fill="#1F2937"/>
+  <rect x="430.0" y="120.0" width="240" height="50" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="145" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Клиент оставляет заявку</text>
+  <line x1="550" y1="97" x2="550" y2="120"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="410.0" y="190.0" width="280" height="50" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="215" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Менеджер принимает заявку</text>
+  <line x1="550" y1="170" x2="550" y2="190"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="410.0" y="260.0" width="280" height="50" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="285" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Замерщик выезжает на адрес</text>
+  <line x1="550" y1="240" x2="550" y2="260"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="410.0" y="330.0" width="280" height="60" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="352" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Дизайнер разрабатывает</text>
+  <text x="550" y="368" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">проект и смету</text>
+  <line x1="550" y1="310" x2="550" y2="330"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <path d="M 550 425.0 L 660.0 470 L 550 515.0 L 440.0 470 Z"
+        fill="#FEF3C7" stroke="#92400E" stroke-width="1.4"/>
+  <text x="550" y="463" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Проект</text>
+  <text x="550" y="477" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">согласован?</text>
+  <line x1="550" y1="390" x2="550" y2="425"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="60.0" y="440.0" width="240" height="60" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="180" y="462" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Внести правки в проект</text>
+  <text x="180" y="478" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">(дизайнер)</text>
+  <line x1="440" y1="470" x2="300" y2="470"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="345.0" y="452.0" width="50" height="18" rx="3"
+        fill="#FFFFFF" stroke="none" opacity="0.85"/>
+  <text x="370.0" y="464.0" text-anchor="middle" font-family="DejaVu Sans"
+        font-size="11" font-weight="600" fill="#1F2937"
+        dominant-baseline="middle">Нет</text>
+  <polyline points="180,440 180,360 410,360"
+            stroke="#374151" stroke-width="1.4" fill="none"
+            marker-end="url(#arrow)"/>
+  <rect x="410.0" y="555.0" width="280" height="50" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="580" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Заключить договор</text>
+  <line x1="550" y1="515" x2="550" y2="555"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="525.0" y="517.0" width="50" height="18" rx="3"
+        fill="#FFFFFF" stroke="none" opacity="0.85"/>
+  <text x="550.0" y="529.0" text-anchor="middle" font-family="DejaVu Sans"
+        font-size="11" font-weight="600" fill="#1F2937"
+        dominant-baseline="middle">Да</text>
+  <rect x="430.0" y="625.0" width="240" height="50" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="650" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Клиент вносит предоплату 50%</text>
+  <line x1="550" y1="605" x2="550" y2="625"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="410.0" y="700.0" width="280" height="60" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="722" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Закупка фурнитуры,</text>
+  <text x="550" y="738" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">ЛДСП, зеркал</text>
+  <line x1="550" y1="675" x2="550" y2="700"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="410.0" y="800.0" width="280" height="60" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="822" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Раскрой и обработка</text>
+  <text x="550" y="838" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">деталей на производстве</text>
+  <line x1="550" y1="760" x2="550" y2="800"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <path d="M 550 895.0 L 650.0 935 L 550 975.0 L 450.0 935 Z"
+        fill="#FEF3C7" stroke="#92400E" stroke-width="1.4"/>
+  <text x="550" y="928" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Контроль</text>
+  <text x="550" y="942" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">качества</text>
+  <line x1="550" y1="860" x2="550" y2="895"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="100.0" y="800.0" width="200" height="60" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="200" y="822" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Переделать</text>
+  <text x="200" y="838" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">бракованную деталь</text>
+  <polyline points="450,935 200,935 200,860"
+            stroke="#374151" stroke-width="1.4" fill="none"
+            marker-end="url(#arrow)"/>
+  <text x="270" y="930" font-family="DejaVu Sans" font-size="11"
+        font-weight="600" fill="#1F2937">Брак</text>
+  <polyline points="300,830 410,830"
+            stroke="#374151" stroke-width="1.4" fill="none"
+            marker-end="url(#arrow)"/>
+  <rect x="410.0" y="1020.0" width="280" height="50" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="1045" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Доставка деталей клиенту</text>
+  <line x1="550" y1="975" x2="550" y2="1020"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="525.0" y="979.5" width="50" height="18" rx="3"
+        fill="#FFFFFF" stroke="none" opacity="0.85"/>
+  <text x="550.0" y="991.5" text-anchor="middle" font-family="DejaVu Sans"
+        font-size="11" font-weight="600" fill="#1F2937"
+        dominant-baseline="middle">ОК</text>
+  <rect x="410.0" y="1090.0" width="280" height="50" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="1115" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Сборка и монтаж шкафа</text>
+  <line x1="550" y1="1070" x2="550" y2="1090"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="410.0" y="1160.0" width="280" height="50" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="1185" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Клиент вносит доплату 50%</text>
+  <line x1="550" y1="1140" x2="550" y2="1160"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <rect x="410.0" y="1230.0" width="280" height="50" rx="20"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="550" y="1255" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="12" font-weight="600"
+        fill="#1F2937" dominant-baseline="middle">Подписание акта приёмки</text>
+  <line x1="550" y1="1210" x2="550" y2="1230"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/>
+  <circle cx="550" cy="1330" r="14" fill="none" stroke="#1F2937" stroke-width="1.6"/>
+  <circle cx="550" cy="1330" r="9" fill="#1F2937"/>
+  <line x1="550" y1="1280" x2="550" y2="1316"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow)"/></svg>

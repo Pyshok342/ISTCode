@@ -2,13 +2,20 @@
 """
 Генератор архитектурных диаграмм согласно нотации C4 для системы
 управления заказами. Создаёт три SVG-файла (уровни Context,
-Containers, Components) и конвертирует их в PNG.
+Containers, Components) и PNG без системной библиотеки Cairo.
 
 Запуск:
-    pip install cairosvg
+    pip install pillow
     python generate_c4_orders.py
 """
-import cairosvg
+from math import atan2, cos, hypot, pi, sin
+from pathlib import Path
+import xml.etree.ElementTree as ET
+
+try:
+    from PIL import Image, ImageDraw, ImageFont
+except ImportError as exc:
+    raise SystemExit("Для генерации PNG установите Pillow: pip install pillow") from exc
 
 COLORS = {
     "person":    {"fill": "#D3D1C7", "stroke": "#444441", "text": "#2C2C2A"},
@@ -20,6 +27,156 @@ COLORS = {
     "component": {"fill": "#EEEDFE", "stroke": "#3C3489", "text": "#26215C"},
     "boundary":  {"fill": "#FFFFFF", "stroke": "#888888"},
 }
+
+PNG_SCALE = 2
+FONT_CACHE = {}
+OUTPUT_DIR = Path(__file__).resolve().parent
+
+
+def load_font(size, bold=False, italic=False):
+    key = (int(size * PNG_SCALE), bold, italic)
+    if key in FONT_CACHE:
+        return FONT_CACHE[key]
+
+    font_dir = Path("C:/Windows/Fonts")
+    if bold and italic:
+        candidates = ["arialbi.ttf", "segoeuiz.ttf"]
+    elif bold:
+        candidates = ["arialbd.ttf", "segoeuib.ttf"]
+    elif italic:
+        candidates = ["ariali.ttf", "segoeuii.ttf"]
+    else:
+        candidates = ["arial.ttf", "segoeui.ttf", "DejaVuSans.ttf"]
+
+    for name in candidates:
+        font_path = font_dir / name
+        if font_path.exists():
+            FONT_CACHE[key] = ImageFont.truetype(str(font_path), key[0])
+            return FONT_CACHE[key]
+
+    try:
+        FONT_CACHE[key] = ImageFont.truetype(candidates[-1], key[0])
+    except OSError:
+        FONT_CACHE[key] = ImageFont.load_default()
+    return FONT_CACHE[key]
+
+
+def svg_num(elem, name, default=0):
+    return float(elem.attrib.get(name, default))
+
+
+def svg_color(value):
+    if not value or value == "none":
+        return None
+    return value
+
+
+def draw_dashed_line(draw, start, end, fill, width, dash=(6, 4)):
+    x1, y1 = start
+    x2, y2 = end
+    distance = hypot(x2 - x1, y2 - y1)
+    if distance == 0:
+        return
+
+    ux = (x2 - x1) / distance
+    uy = (y2 - y1) / distance
+    dash_len, gap_len = dash
+    current = 0
+    while current < distance:
+        next_pos = min(current + dash_len, distance)
+        draw.line(
+            (
+                x1 + ux * current,
+                y1 + uy * current,
+                x1 + ux * next_pos,
+                y1 + uy * next_pos,
+            ),
+            fill=fill,
+            width=width,
+        )
+        current += dash_len + gap_len
+
+
+def draw_dashed_rect(draw, bbox, radius, outline, width):
+    x1, y1, x2, y2 = bbox
+    dash = (6 * PNG_SCALE, 4 * PNG_SCALE)
+    draw_dashed_line(draw, (x1 + radius, y1), (x2 - radius, y1), outline, width, dash)
+    draw_dashed_line(draw, (x2, y1 + radius), (x2, y2 - radius), outline, width, dash)
+    draw_dashed_line(draw, (x2 - radius, y2), (x1 + radius, y2), outline, width, dash)
+    draw_dashed_line(draw, (x1, y2 - radius), (x1, y1 + radius), outline, width, dash)
+
+
+def draw_arrow_head(draw, x1, y1, x2, y2, fill):
+    angle = atan2(y2 - y1, x2 - x1)
+    size = 10 * PNG_SCALE
+    points = [
+        (x2, y2),
+        (x2 - size * cos(angle - pi / 6), y2 - size * sin(angle - pi / 6)),
+        (x2 - size * cos(angle + pi / 6), y2 - size * sin(angle + pi / 6)),
+    ]
+    draw.polygon(points, fill=fill)
+
+
+def draw_svg_element(draw, elem):
+    tag = elem.tag.rsplit("}", 1)[-1]
+    if tag in {"defs", "marker", "path"}:
+        return
+
+    if tag == "rect":
+        x = svg_num(elem, "x") * PNG_SCALE
+        y = svg_num(elem, "y") * PNG_SCALE
+        w = svg_num(elem, "width") * PNG_SCALE
+        h = svg_num(elem, "height") * PNG_SCALE
+        radius = int(svg_num(elem, "rx") * PNG_SCALE)
+        fill = svg_color(elem.attrib.get("fill"))
+        outline = svg_color(elem.attrib.get("stroke"))
+        width = max(1, int(round(svg_num(elem, "stroke-width", 1) * PNG_SCALE)))
+        bbox = (x, y, x + w, y + h)
+        if elem.attrib.get("stroke-dasharray") and outline:
+            if fill:
+                draw.rounded_rectangle(bbox, radius=radius, fill=fill)
+            draw_dashed_rect(draw, bbox, radius, outline, width)
+        else:
+            draw.rounded_rectangle(bbox, radius=radius, fill=fill, outline=outline, width=width)
+
+    elif tag == "line":
+        x1 = svg_num(elem, "x1") * PNG_SCALE
+        y1 = svg_num(elem, "y1") * PNG_SCALE
+        x2 = svg_num(elem, "x2") * PNG_SCALE
+        y2 = svg_num(elem, "y2") * PNG_SCALE
+        stroke = svg_color(elem.attrib.get("stroke", "#000000"))
+        width = max(1, int(round(svg_num(elem, "stroke-width", 1) * PNG_SCALE)))
+        if elem.attrib.get("stroke-dasharray"):
+            draw_dashed_line(draw, (x1, y1), (x2, y2), stroke, width, (5 * PNG_SCALE, 4 * PNG_SCALE))
+        else:
+            draw.line((x1, y1, x2, y2), fill=stroke, width=width)
+        if elem.attrib.get("marker-end"):
+            draw_arrow_head(draw, x1, y1, x2, y2, stroke)
+
+    elif tag == "text":
+        text = "".join(elem.itertext())
+        if text:
+            size = svg_num(elem, "font-size", 12)
+            weight = elem.attrib.get("font-weight", "")
+            style = elem.attrib.get("font-style", "")
+            font = load_font(size, bold=weight in {"700", "bold"}, italic=style == "italic")
+            fill = svg_color(elem.attrib.get("fill", "#000000"))
+            x = svg_num(elem, "x") * PNG_SCALE
+            y = svg_num(elem, "y") * PNG_SCALE
+            h_anchor = {"middle": "m", "end": "r"}.get(elem.attrib.get("text-anchor"), "l")
+            v_anchor = "m" if elem.attrib.get("dominant-baseline") == "central" else "s"
+            draw.text((x, y), text, font=font, fill=fill, anchor=h_anchor + v_anchor)
+
+    for child in elem:
+        draw_svg_element(draw, child)
+
+
+def svg_to_png(svg_content, png_path, W, H):
+    image = Image.new("RGB", (W * PNG_SCALE, H * PNG_SCALE), "white")
+    draw = ImageDraw.Draw(image)
+    root = ET.fromstring(svg_content)
+    draw_svg_element(draw, root)
+    image.save(png_path)
 
 
 def box(x, y, w, h, title, subtitle, kind, font_size=14, sub_size=11):
@@ -76,15 +233,12 @@ def svg_header(W, H, title):
 
 
 def save(filename, svg_content, W, H):
-    with open(f"{filename}.svg", "w", encoding="utf-8") as f:
+    svg_path = OUTPUT_DIR / f"{filename}.svg"
+    png_path = OUTPUT_DIR / f"{filename}.png"
+    with svg_path.open("w", encoding="utf-8") as f:
         f.write(svg_content)
-    cairosvg.svg2png(
-        bytestring=svg_content.encode("utf-8"),
-        write_to=f"{filename}.png",
-        output_width=W * 2,
-        output_height=H * 2,
-    )
-    print(f"  → {filename}.svg, {filename}.png")
+    svg_to_png(svg_content, png_path, W, H)
+    print(f"  -> {filename}.svg, {filename}.png")
 
 
 # ====================================================================

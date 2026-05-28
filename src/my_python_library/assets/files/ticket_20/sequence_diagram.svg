@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1100" width="1500" height="1100">
+  <defs>
+    <marker id="arrow-solid" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#374151"/>
+    </marker>
+    <marker id="arrow-open" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10" fill="none" stroke="#374151" stroke-width="1.5"/>
+    </marker>
+    <marker id="arrow-diamond-open" viewBox="0 0 12 12" refX="11" refY="6"
+            markerWidth="14" markerHeight="14" orient="auto-start-reverse">
+      <path d="M0 6 L6 0 L12 6 L6 12 z" fill="white" stroke="#374151" stroke-width="1.2"/>
+    </marker>
+  </defs>
+  <text x="750.0" y="28" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="16" font-weight="700"
+        fill="#1F2937">Диаграмма последовательности: «Продажа туристического продукта»</text>
+  <text x="750.0" y="48" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-style="italic"
+        fill="#666666">Sequence Diagram (UML)</text>
+  <rect x="35.0" y="80" width="130" height="36" rx="4"
+        fill="#FEF3C7" stroke="#92400E" stroke-width="1.4"/>
+  <text x="100" y="102" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="700"
+        fill="#1F2937">Клиент</text>
+  <line x1="100" y1="116" x2="100" y2="1080"
+        stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="215.0" y="80" width="130" height="36" rx="4"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="280" y="102" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="700"
+        fill="#1F2937">:TourCatalog</text>
+  <line x1="280" y1="116" x2="280" y2="1080"
+        stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="405.0" y="80" width="130" height="36" rx="4"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="470" y="102" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="700"
+        fill="#1F2937">:TourAgent</text>
+  <line x1="470" y1="116" x2="470" y2="1080"
+        stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="595.0" y="80" width="130" height="36" rx="4"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="660" y="102" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="700"
+        fill="#1F2937">:Reservation</text>
+  <line x1="660" y1="116" x2="660" y2="1080"
+        stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="785.0" y="80" width="130" height="36" rx="4"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="850" y="102" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="700"
+        fill="#1F2937">:PaymentSvc</text>
+  <line x1="850" y1="116" x2="850" y2="1080"
+        stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="975.0" y="80" width="130" height="36" rx="4"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="1040" y="102" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="700"
+        fill="#1F2937">:Supplier</text>
+  <line x1="1040" y1="116" x2="1040" y2="1080"
+        stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1165.0" y="80" width="130" height="36" rx="4"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="1230" y="102" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="700"
+        fill="#1F2937">:DocService</text>
+  <line x1="1230" y1="116" x2="1230" y2="1080"
+        stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="1335.0" y="80" width="130" height="36" rx="4"
+        fill="#DBEAFE" stroke="#1E40AF" stroke-width="1.4"/>
+  <text x="1400" y="102" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-weight="700"
+        fill="#1F2937">:Notifier</text>
+  <line x1="1400" y1="116" x2="1400" y2="1080"
+        stroke="#374151" stroke-width="1" stroke-dasharray="4 4"/>
+  <rect x="464" y="145" width="12" height="745"
+        fill="#3B82F6" opacity="0.7"
+        stroke="#374151" stroke-width="0.8"/>
+  <rect x="654" y="415" width="12" height="275"
+        fill="#3B82F6" opacity="0.7"
+        stroke="#374151" stroke-width="0.8"/>
+  <rect x="844" y="490" width="12" height="135"
+        fill="#3B82F6" opacity="0.7"
+        stroke="#374151" stroke-width="0.8"/>
+  <rect x="1034" y="315" width="12" height="380"
+        fill="#3B82F6" opacity="0.7"
+        stroke="#374151" stroke-width="0.8"/>
+  <rect x="1224" y="725" width="12" height="45"
+        fill="#3B82F6" opacity="0.7"
+        stroke="#374151" stroke-width="0.8"/>
+  <rect x="274" y="180" width="12" height="40"
+        fill="#3B82F6" opacity="0.7"
+        stroke="#374151" stroke-width="0.8"/>
+  <line x1="106" y1="155" x2="464" y2="155"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="217.25" y="141" width="135.5" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="285.0" y="151" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">1. поиск тура (критерии)</text>
+  <line x1="464" y1="185" x2="286" y2="185"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="326.5" y="171" width="97.0" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="375.0" y="181" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">2. find(criteria)</text>
+  <line x1="286" y1="215" x2="464" y2="215"
+        stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 3"
+        marker-end="url(#arrow-open)"/>
+  <rect x="325.0" y="201" width="100" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="375.0" y="211" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-style="italic"
+        fill="#6B7280">List&lt;Tour&gt;</text>
+  <line x1="464" y1="245" x2="106" y2="245"
+        stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 3"
+        marker-end="url(#arrow-open)"/>
+  <rect x="240.0" y="231" width="90" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="285.0" y="241" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-style="italic"
+        fill="#6B7280">варианты туров</text>
+  <line x1="106" y1="290" x2="464" y2="290"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="222.75" y="276" width="124.5" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="285.0" y="286" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">3. выбор тура (tourId)</text>
+  <line x1="476" y1="320" x2="1034" y2="320"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="676.25" y="306" width="157.5" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="755.0" y="316" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">4. checkAvailability(tourId)</text>
+  <line x1="1034" y1="350" x2="476" y2="350"
+        stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 3"
+        marker-end="url(#arrow-open)"/>
+  <rect x="692.5" y="336" width="125" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="755.0" y="346" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-style="italic"
+        fill="#6B7280">available, finalPrice</text>
+  <line x1="106" y1="390" x2="464" y2="390"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="203.5" y="376" width="163.0" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="285.0" y="386" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">5. подтвердить (passportData)</text>
+  <line x1="476" y1="420" x2="654" y2="420"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="494.5" y="406" width="141.0" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="565.0" y="416" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">6. create(customer, tour)</text>
+  <line x1="654" y1="450" x2="476" y2="450"
+        stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 3"
+        marker-end="url(#arrow-open)"/>
+  <rect x="520.0" y="436" width="90" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="565.0" y="446" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-style="italic"
+        fill="#6B7280">Reservation#42</text>
+  <line x1="476" y1="495" x2="844" y2="495"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="586.75" y="481" width="146.5" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="660.0" y="491" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">7. initiatePayment(amount)</text>
+  <line x1="844" y1="525" x2="106" y2="525"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="421.0" y="511" width="108.0" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="475.0" y="521" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">8. ссылка на оплату</text>
+  <line x1="106" y1="560" x2="844" y2="560"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="423.75" y="546" width="102.5" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="475.0" y="556" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">9. оплатить (card)</text>
+  <path d="M 856 590 L 880 590 L 880 608 L 858 608"
+        fill="none" stroke="#374151" stroke-width="1.4"
+        marker-end="url(#arrow-solid)"/>
+  <text x="895" y="596" font-family="DejaVu Sans" font-size="10"
+        font-weight="600" fill="#1F2937">10. process()</text>
+  <line x1="844" y1="620" x2="476" y2="620"
+        stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 3"
+        marker-end="url(#arrow-open)"/>
+  <rect x="610.0" y="606" width="100" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="660.0" y="616" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-style="italic"
+        fill="#6B7280">paymentConfirmed</text>
+  <line x1="476" y1="660" x2="654" y2="660"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="511.0" y="646" width="108.0" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="565.0" y="656" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">11. confirm(payment)</text>
+  <line x1="476" y1="690" x2="1034" y2="690"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="687.25" y="676" width="135.5" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="755.0" y="686" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">12. bookConfirmed(tourId)</text>
+  <line x1="476" y1="730" x2="1224" y2="730"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="779.5" y="716" width="141.0" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="850.0" y="726" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">13. generateDocuments(res)</text>
+  <line x1="1224" y1="760" x2="476" y2="760"
+        stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 3"
+        marker-end="url(#arrow-open)"/>
+  <rect x="780.0" y="746" width="140" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="850.0" y="756" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-style="italic"
+        fill="#6B7280">voucher.pdf, tickets.pdf</text>
+  <line x1="476" y1="800" x2="1394" y2="800"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="856.25" y="786" width="157.5" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="935.0" y="796" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">14. sendEmail(customer, docs)</text>
+  <line x1="476" y1="835" x2="1394" y2="835"
+        stroke="#374151" stroke-width="1.4" marker-end="url(#arrow-solid)"/>
+  <rect x="878.25" y="821" width="113.5" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="935.0" y="831" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-weight="600"
+        fill="#1F2937">15. sendSMS(customer)</text>
+  <line x1="464" y1="875" x2="106" y2="875"
+        stroke="#6B7280" stroke-width="1.2" stroke-dasharray="5 3"
+        marker-end="url(#arrow-open)"/>
+  <rect x="227.5" y="861" width="115" height="14"
+        rx="3" fill="white" opacity="0.92" stroke="none"/>
+  <text x="285.0" y="871" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="10" font-style="italic"
+        fill="#6B7280">комплект документов</text>
+  <rect x="50" y="930" width="280" height="60" rx="4"
+        fill="#FEFCE8" stroke="#CA8A04" stroke-width="1.2"/>
+  <text x="60" y="950" font-family="DejaVu Sans" font-size="10"
+        font-weight="700" fill="#1F2937">note</text>
+  <text x="60" y="968" font-family="DejaVu Sans" font-size="10" fill="#1F2937">
+    Сценарий — «успешная продажа».</text>
+  <text x="60" y="982" font-family="DejaVu Sans" font-size="10" fill="#1F2937">
+    Альтернативные ветки: отказ оплаты,</text>
+  <text x="60" y="996" font-family="DejaVu Sans" font-size="10" fill="#1F2937">
+    отмена бронирования (отдельные SD).</text>
+  <rect x="350" y="930" width="280" height="60" rx="4"
+        fill="#FEFCE8" stroke="#CA8A04" stroke-width="1.2"/>
+  <text x="360" y="950" font-family="DejaVu Sans" font-size="10"
+        font-weight="700" fill="#1F2937">обозначения</text>
+  <text x="360" y="968" font-family="DejaVu Sans" font-size="10" fill="#1F2937">
+    ──▶  синхронный вызов</text>
+  <text x="360" y="982" font-family="DejaVu Sans" font-size="10" fill="#1F2937">
+    ╴ ╴▷  возвращаемое значение</text>
+  <text x="360" y="996" font-family="DejaVu Sans" font-size="10" fill="#1F2937">
+    █  полоса активации объекта</text></svg>

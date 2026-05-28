@@ -15,8 +15,21 @@
 """
 import json
 from pathlib import Path
-import requests
-from bs4 import BeautifulSoup
+
+try:
+    import requests
+    from bs4 import BeautifulSoup
+except ImportError as exc:
+    missing = exc.name or str(exc)
+    raise SystemExit(
+        f"Missing dependency: {missing}\n"
+        "Install dependencies: python -m pip install requests beautifulsoup4 lxml"
+    ) from exc
+
+
+BASE_DIR = Path(__file__).resolve().parent
+LOCAL_HTML = BASE_DIR / "mock_news.html"
+OUTPUT_FILE = BASE_DIR / "parsed_articles.json"
 
 
 # =====================================================================
@@ -24,7 +37,13 @@ from bs4 import BeautifulSoup
 # =====================================================================
 def parse_local_html(filename: str = "mock_news.html") -> list[dict]:
     """Прочитать локальный HTML и извлечь карточки новостей."""
-    html = Path(filename).read_text(encoding="utf-8")
+    path = Path(filename)
+    if not path.is_absolute():
+        path = BASE_DIR / path
+    if not path.exists():
+        raise SystemExit(f"HTML file not found: {path}")
+
+    html = path.read_text(encoding="utf-8")
     soup = BeautifulSoup(html, "lxml")
 
     print(f"Заголовок страницы: {soup.title.string}\n")
@@ -32,7 +51,7 @@ def parse_local_html(filename: str = "mock_news.html") -> list[dict]:
     # Извлекаем меню навигации
     print("Главное меню:")
     for link in soup.select("nav.main-nav a, nav .main-nav a, .main-nav a"):
-        print(f"  • {link.text} → {link['href']}")
+        print(f"  - {link.text} -> {link['href']}")
     print()
 
     articles = []
@@ -134,7 +153,7 @@ if __name__ == "__main__":
         print(f"{i}. [{art['category']}] {art['title']}")
         print(f"   Автор: {art['author']}  |  Дата: {art['date']}")
         print(f"   {art['summary']}")
-        print(f"   👁 {art['views']} просмотров, 💬 {art['comments']} комментариев")
+        print(f"   views: {art['views']}, comments: {art['comments']}")
         print(f"   URL: {art['url']}\n")
 
     # Аналитика
@@ -157,7 +176,7 @@ if __name__ == "__main__":
         print(f"   {cat}: {count}")
 
     # Сохранение результата в JSON
-    with open("parsed_articles.json", "w", encoding="utf-8") as f:
+    with OUTPUT_FILE.open("w", encoding="utf-8") as f:
         json.dump(articles, f, ensure_ascii=False, indent=2)
     print(f"\nРезультат сохранён в parsed_articles.json")
 

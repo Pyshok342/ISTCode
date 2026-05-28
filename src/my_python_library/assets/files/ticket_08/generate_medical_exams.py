@@ -14,8 +14,14 @@
     glucose      — уровень глюкозы натощак (ммоль/л)
     diagnosis    — диагноз (категория)
 """
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
+
+
+BASE_DIR = Path(__file__).resolve().parent
+OUTPUT_FILE = BASE_DIR / "medical_exams.csv"
 
 rng = np.random.default_rng(seed=42)
 
@@ -98,7 +104,7 @@ df = pd.DataFrame({
     "diagnosis": diagnosis,
 })
 
-df.to_csv("medical_exams.csv", index=False, encoding="utf-8")
+df.to_csv(OUTPUT_FILE, index=False, encoding="utf-8")
 
 print("Файл medical_exams.csv создан")
 print(f"Строк: {len(df)}, колонок: {len(df.columns)}\n")

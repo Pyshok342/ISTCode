@@ -9,16 +9,27 @@
     pip install pandas matplotlib
     python traffic_analysis.py
 """
+from pathlib import Path
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 
+BASE_DIR = Path(__file__).resolve().parent
+DATA_FILE = BASE_DIR / "traffic_accidents.csv"
+ACCIDENTS_BY_TYPE_FILE = BASE_DIR / "accidents_by_type.png"
+ACCIDENTS_DAILY_FILE = BASE_DIR / "accidents_daily.png"
+
+
 # ---------- Шаг 1. Загрузка датасета ----------
-df = pd.read_csv("traffic_accidents.csv", parse_dates=["date"])
+if not DATA_FILE.exists():
+    raise SystemExit(f"Dataset not found: {DATA_FILE}")
+
+df = pd.read_csv(DATA_FILE, parse_dates=["date"])
 print("Размер таблицы:", df.shape)
 print("Колонки:", df.columns.tolist())
-print(f"\nПериод наблюдений: {df['date'].min().date()} → {df['date'].max().date()}")
+print(f"\nПериод наблюдений: {df['date'].min().date()} - {df['date'].max().date()}")
 
 
 # ---------- Шаг 2. Подсчёт происшествий по типам ----------
@@ -59,7 +70,7 @@ ax.grid(True, axis="y", alpha=0.3)
 ax.set_ylim(0, max(type_counts.values) * 1.15)
 plt.xticks(rotation=15, ha="right")
 plt.tight_layout()
-plt.savefig("accidents_by_type.png", dpi=150)
+plt.savefig(ACCIDENTS_BY_TYPE_FILE, dpi=150)
 plt.close()
 print("\nСохранён график accidents_by_type.png")
 
@@ -98,7 +109,7 @@ ax.text(daily_counts.index[5], mean_per_day + 0.3,
         f"Среднее: {mean_per_day:.1f}", color="#7F8C8D", fontsize=10)
 
 plt.tight_layout()
-plt.savefig("accidents_daily.png", dpi=150)
+plt.savefig(ACCIDENTS_DAILY_FILE, dpi=150)
 plt.close()
 print("Сохранён график accidents_daily.png")
 

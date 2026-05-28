@@ -11,7 +11,14 @@
     python test_weather.py
 """
 
+import sys
+
 from bot import fetch_weather, format_weather_message
+
+
+def console_safe(text: str) -> str:
+    encoding = sys.stdout.encoding or "utf-8"
+    return text.encode(encoding, errors="replace").decode(encoding)
 
 if __name__ == "__main__":
     print("Запрашиваю погоду в Екатеринбурге…\n")
@@ -31,5 +38,5 @@ if __name__ == "__main__":
         msg = format_weather_message(data)
         for tag in ("<b>", "</b>"):
             msg = msg.replace(tag, "")
-        print(msg)
+        print(console_safe(msg))
         print("-" * 50)

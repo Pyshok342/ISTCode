@@ -9,13 +9,29 @@
     python apartments_heatmap.py
 """
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
+from pathlib import Path
+
+try:
+    import pandas as pd
+    import matplotlib.pyplot as plt
+except ImportError as exc:
+    missing = exc.name or str(exc)
+    raise SystemExit(
+        f"Missing dependency: {missing}\n"
+        "Install dependencies: python -m pip install pandas matplotlib"
+    ) from exc
+
+
+BASE_DIR = Path(__file__).resolve().parent
+DATA_FILE = BASE_DIR / "apartments.csv"
+OUTPUT_FILE = BASE_DIR / "apartments_heatmap.png"
 
 
 # ---------- Шаг 1. Загрузка датасета ----------
-df = pd.read_csv("apartments.csv")
+if not DATA_FILE.exists():
+    raise SystemExit(f"Dataset not found: {DATA_FILE}")
+
+df = pd.read_csv(DATA_FILE)
 
 print("Размер таблицы:", df.shape)
 print("Колонки:", df.columns.tolist())
@@ -35,7 +51,7 @@ stats = df[["area", "price"]].agg(["mean", "min", "max"]).round(2)
 print("\n=== Статистики по площади и цене ===")
 print(stats.to_string())
 
-print(f"\nПлощадь (м²):")
+print(f"\nПлощадь (кв. м):")
 print(f"  средняя:     {df['area'].mean():.2f}")
 print(f"  минимальная: {df['area'].min():.2f}")
 print(f"  максимальная: {df['area'].max():.2f}")
@@ -48,6 +64,12 @@ print(f"  максимальная: {df['price'].max():,.0f}".replace(",", " "))
 
 # ---------- Шаг 4. Корреляционная матрица ----------
 numeric_cols = ["rooms", "area", "floor", "total_floors", "year_built", "price"]
+missing_cols = [col for col in numeric_cols if col not in df.columns]
+if missing_cols:
+    raise SystemExit(f"CSV missing required columns: {', '.join(missing_cols)}")
+
+df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors="coerce")
+df = df.dropna(subset=numeric_cols)
 corr_matrix = df[numeric_cols].corr()
 
 print("\n=== Корреляционная матрица ===")
@@ -87,6 +109,8 @@ cbar = fig.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
 cbar.set_label("Коэффициент корреляции Пирсона", fontsize=11)
 
 plt.tight_layout()
-plt.savefig("apartments_heatmap.png", dpi=150)
-plt.show()
+plt.savefig(OUTPUT_FILE, dpi=150)
+if "agg" not in plt.get_backend().lower():
+    plt.show()
+plt.close(fig)
 print("\nГрафик сохранён в apartments_heatmap.png")

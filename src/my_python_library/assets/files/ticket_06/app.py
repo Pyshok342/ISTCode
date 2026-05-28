@@ -13,8 +13,9 @@ import sqlite3
 import tkinter as tk
 from tkinter import ttk, messagebox
 from datetime import datetime
+from pathlib import Path
 
-DB_FILE = "students.db"
+DB_FILE = Path(__file__).resolve().parent / "students.db"
 
 
 # =====================================================================

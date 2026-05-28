@@ -10,12 +10,22 @@
     python medical_analysis.py
 """
 
+from pathlib import Path
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
+BASE_DIR = Path(__file__).resolve().parent
+DATA_FILE = BASE_DIR / "medical_exams.csv"
+OUTPUT_FILE = BASE_DIR / "cholesterol_by_diagnosis.png"
+
+
 # ---------- Шаг 1. Загрузка датасета ----------
-df = pd.read_csv("medical_exams.csv")
+if not DATA_FILE.exists():
+    raise SystemExit(f"Dataset not found: {DATA_FILE}")
+
+df = pd.read_csv(DATA_FILE)
 
 print("Размер таблицы:", df.shape)
 print("Колонки:", df.columns.tolist())
@@ -77,6 +87,8 @@ plt.grid(True, axis="y", alpha=0.3)
 plt.ylim(0, max(mean_chol.values) * 1.15)
 plt.tight_layout()
 
-plt.savefig("cholesterol_by_diagnosis.png", dpi=150)
-plt.show()
+plt.savefig(OUTPUT_FILE, dpi=150)
+if "agg" not in plt.get_backend().lower():
+    plt.show()
+plt.close()
 print("\nГрафик сохранён в cholesterol_by_diagnosis.png")

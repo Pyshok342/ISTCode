@@ -4,7 +4,31 @@
 1) Диаграмма вариантов использования (Use Case Diagram);
 2) Диаграмма деятельности (Activity Diagram).
 """
-import cairosvg
+from pathlib import Path
+
+try:
+    import cairosvg
+except (ImportError, OSError) as exc:
+    cairosvg = None
+    CAIROSVG_ERROR = exc
+else:
+    CAIROSVG_ERROR = None
+
+
+BASE_DIR = Path(__file__).resolve().parent
+
+
+def save_png(svg_body, filename, width, height):
+    if cairosvg is None:
+        print(f"{filename} skipped: Cairo backend недоступен")
+        return False
+    cairosvg.svg2png(
+        bytestring=svg_body.encode("utf-8"),
+        write_to=str(BASE_DIR / filename),
+        output_width=width * 2,
+        output_height=height * 2,
+    )
+    return True
 
 
 # ====== Цветовая палитра ======
@@ -171,12 +195,12 @@ def diagram_use_case():
     body += assoc(1302, 650, 660, 610)  # Монтажник → Собрать шкаф
 
     body += "</svg>"
-    with open("use_case_diagram.svg", "w", encoding="utf-8") as f:
+    with (BASE_DIR / "use_case_diagram.svg").open("w", encoding="utf-8") as f:
         f.write(body)
-    cairosvg.svg2png(bytestring=body.encode("utf-8"),
-                     write_to="use_case_diagram.png",
-                     output_width=W*2, output_height=H*2)
-    print("use_case_diagram.png сохранён")
+    if save_png(body, "use_case_diagram.png", W, H):
+        print("use_case_diagram.png сохранён")
+    else:
+        print("use_case_diagram.svg сохранён")
 
 
 # ====================================================================
@@ -385,12 +409,12 @@ def diagram_activity():
     body += flow(X, 1280, X, 1316)
 
     body += "</svg>"
-    with open("activity_diagram.svg", "w", encoding="utf-8") as f:
+    with (BASE_DIR / "activity_diagram.svg").open("w", encoding="utf-8") as f:
         f.write(body)
-    cairosvg.svg2png(bytestring=body.encode("utf-8"),
-                     write_to="activity_diagram.png",
-                     output_width=W*2, output_height=H*2)
-    print("activity_diagram.png сохранён")
+    if save_png(body, "activity_diagram.png", W, H):
+        print("activity_diagram.png сохранён")
+    else:
+        print("activity_diagram.svg сохранён")
 
 
 if __name__ == "__main__":

@@ -7,7 +7,18 @@
     pip install cairosvg
     python make_window_mockup.py
 """
-import cairosvg
+from pathlib import Path
+
+try:
+    import cairosvg
+except (ImportError, OSError) as exc:
+    cairosvg = None
+    CAIROSVG_ERROR = exc
+else:
+    CAIROSVG_ERROR = None
+
+
+BASE_DIR = Path(__file__).resolve().parent
 
 
 def make_window(fields_data, output_filename):
@@ -100,15 +111,20 @@ def make_window(fields_data, output_filename):
     svg += "\n</svg>\n"
 
     # Сохраняем
-    with open(f"{output_filename}.svg", "w", encoding="utf-8") as f:
+    svg_path = BASE_DIR / f"{output_filename}.svg"
+    png_path = BASE_DIR / f"{output_filename}.png"
+    with svg_path.open("w", encoding="utf-8") as f:
         f.write(svg)
-    cairosvg.svg2png(
-        bytestring=svg.encode("utf-8"),
-        write_to=f"{output_filename}.png",
-        output_width=W * 2,
-        output_height=H * 2,
-    )
-    print(f"  → {output_filename}.svg, {output_filename}.png")
+    if cairosvg is not None:
+        cairosvg.svg2png(
+            bytestring=svg.encode("utf-8"),
+            write_to=str(png_path),
+            output_width=W * 2,
+            output_height=H * 2,
+        )
+        print(f"  -> {output_filename}.svg, {output_filename}.png")
+    else:
+        print(f"  -> {output_filename}.svg; PNG skipped: Cairo backend недоступен")
 
 
 if __name__ == "__main__":

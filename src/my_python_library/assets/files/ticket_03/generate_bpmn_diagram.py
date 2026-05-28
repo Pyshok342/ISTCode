@@ -9,7 +9,20 @@
     python generate_bpmn_diagram.py
 """
 
-import cairosvg
+from pathlib import Path
+
+try:
+    import cairosvg
+except (ImportError, OSError) as exc:
+    cairosvg = None
+    CAIROSVG_ERROR = exc
+else:
+    CAIROSVG_ERROR = None
+
+
+BASE_DIR = Path(__file__).resolve().parent
+SVG_FILE = BASE_DIR / "bpmn_facultative.svg"
+PNG_FILE = BASE_DIR / "bpmn_facultative.png"
 
 # Цветовая палитра (мягкие пастельные тона)
 COLORS = {
@@ -197,15 +210,18 @@ svg_body = f'''<?xml version="1.0" encoding="UTF-8"?>
 '''
 
 # Сохраняем SVG
-with open("bpmn_facultative.svg", "w", encoding="utf-8") as f:
+with SVG_FILE.open("w", encoding="utf-8") as f:
     f.write(svg_body)
 print("Файл bpmn_facultative.svg сохранён")
 
 # Конвертируем в PNG (масштабирование 2× для retina-качества)
-cairosvg.svg2png(
-    bytestring=svg_body.encode("utf-8"),
-    write_to="bpmn_facultative.png",
-    output_width=W * 2,
-    output_height=H * 2,
-)
-print("Файл bpmn_facultative.png сохранён (2400×1080)")
+if cairosvg is not None:
+    cairosvg.svg2png(
+        bytestring=svg_body.encode("utf-8"),
+        write_to=str(PNG_FILE),
+        output_width=W * 2,
+        output_height=H * 2,
+    )
+    print("Файл bpmn_facultative.png сохранён (2400×1080)")
+else:
+    print("PNG пропущен: Cairo backend недоступен. SVG сохранён.")

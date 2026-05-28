@@ -4,7 +4,31 @@
 1) Диаграмма последовательности (Sequence Diagram);
 2) Диаграмма классов (Class Diagram).
 """
-import cairosvg
+from pathlib import Path
+
+try:
+    import cairosvg
+except (ImportError, OSError) as exc:
+    cairosvg = None
+    CAIROSVG_ERROR = exc
+else:
+    CAIROSVG_ERROR = None
+
+
+BASE_DIR = Path(__file__).resolve().parent
+
+
+def save_png(svg_body, filename, width, height):
+    if cairosvg is None:
+        print(f"{filename} skipped: Cairo backend недоступен")
+        return False
+    cairosvg.svg2png(
+        bytestring=svg_body.encode("utf-8"),
+        write_to=str(BASE_DIR / filename),
+        output_width=width * 2,
+        output_height=height * 2,
+    )
+    return True
 
 
 # ====== Цветовая палитра ======
@@ -231,12 +255,12 @@ def diagram_sequence():
     █  полоса активации объекта</text>'''
 
     body += "</svg>"
-    with open("sequence_diagram.svg", "w", encoding="utf-8") as f:
+    with (BASE_DIR / "sequence_diagram.svg").open("w", encoding="utf-8") as f:
         f.write(body)
-    cairosvg.svg2png(bytestring=body.encode("utf-8"),
-                     write_to="sequence_diagram.png",
-                     output_width=W*2, output_height=H*2)
-    print("sequence_diagram.png сохранён")
+    if save_png(body, "sequence_diagram.png", W, H):
+        print("sequence_diagram.png сохранён")
+    else:
+        print("sequence_diagram.svg сохранён")
 
 
 # ====================================================================
@@ -464,12 +488,12 @@ def diagram_class():
     body += assoc_line(610, 380, 720, 600, "имеет", "1", "1..*")
 
     body += "</svg>"
-    with open("class_diagram.svg", "w", encoding="utf-8") as f:
+    with (BASE_DIR / "class_diagram.svg").open("w", encoding="utf-8") as f:
         f.write(body)
-    cairosvg.svg2png(bytestring=body.encode("utf-8"),
-                     write_to="class_diagram.png",
-                     output_width=W*2, output_height=H*2)
-    print("class_diagram.png сохранён")
+    if save_png(body, "class_diagram.png", W, H):
+        print("class_diagram.png сохранён")
+    else:
+        print("class_diagram.svg сохранён")
 
 
 if __name__ == "__main__":

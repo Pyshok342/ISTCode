@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" width="1100" height="640">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M2 1 L8 5 L2 9 z" fill="#555555"/>
+    </marker>
+  </defs>
+  <text x="550.0" y="22" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="15" font-weight="700"
+        fill="#2C2C2A">Уровень 1 — Контекст системы управления заказами</text>
+    <g>
+      <rect x="40" y="100" width="150" height="70" rx="8"
+            fill="#D3D1C7" stroke="#444441" stroke-width="1.2"/>
+      <text x="115.0" y="127.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="14" font-weight="700"
+            fill="#2C2C2A">Клиент</text>
+      <text x="115.0" y="145.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="11"
+            fill="#2C2C2A">[Person]</text>
+    </g>
+    <g>
+      <rect x="40" y="220" width="150" height="70" rx="8"
+            fill="#D3D1C7" stroke="#444441" stroke-width="1.2"/>
+      <text x="115.0" y="247.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="14" font-weight="700"
+            fill="#2C2C2A">Менеджер</text>
+      <text x="115.0" y="265.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="11"
+            fill="#2C2C2A">[Person]</text>
+    </g>
+    <g>
+      <rect x="40" y="340" width="150" height="70" rx="8"
+            fill="#D3D1C7" stroke="#444441" stroke-width="1.2"/>
+      <text x="115.0" y="367.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="14" font-weight="700"
+            fill="#2C2C2A">Курьер</text>
+      <text x="115.0" y="385.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="11"
+            fill="#2C2C2A">[Person]</text>
+    </g>
+    <g>
+      <rect x="40" y="460" width="150" height="70" rx="8"
+            fill="#D3D1C7" stroke="#444441" stroke-width="1.2"/>
+      <text x="115.0" y="487.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="14" font-weight="700"
+            fill="#2C2C2A">Кладовщик</text>
+      <text x="115.0" y="505.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="11"
+            fill="#2C2C2A">[Person]</text>
+    </g>
+    <g>
+      <rect x="360" y="260" width="260" height="110" rx="8"
+            fill="#B5D4F4" stroke="#0C447C" stroke-width="1.2"/>
+      <text x="490.0" y="307.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="15" font-weight="700"
+            fill="#042C53">Система управления</text>
+      <text x="490.0" y="325.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="12"
+            fill="#042C53">заказами (OMS)</text>
+    </g>
+    <text x="490" y="350" text-anchor="middle" dominant-baseline="central"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#042C53">[Software System]</text>
+    <g>
+      <rect x="820" y="60" width="230" height="70" rx="8"
+            fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+      <text x="935.0" y="87.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#412402">Платёжный шлюз</text>
+      <text x="935.0" y="105.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="11"
+            fill="#412402">ЮKassa / СберPay</text>
+    </g>
+    <g>
+      <rect x="820" y="180" width="230" height="70" rx="8"
+            fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+      <text x="935.0" y="207.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#412402">Email / SMS</text>
+      <text x="935.0" y="225.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="11"
+            fill="#412402">SMTP / МТС</text>
+    </g>
+    <g>
+      <rect x="820" y="300" width="230" height="70" rx="8"
+            fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+      <text x="935.0" y="327.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#412402">1С / ERP</text>
+      <text x="935.0" y="345.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="11"
+            fill="#412402">Учётная система</text>
+    </g>
+    <g>
+      <rect x="820" y="420" width="230" height="70" rx="8"
+            fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+      <text x="935.0" y="447.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#412402">Службы доставки</text>
+      <text x="935.0" y="465.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="11"
+            fill="#412402">СДЭК / Boxberry</text>
+    </g>
+    <g>
+      <rect x="820" y="540" width="230" height="70" rx="8"
+            fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+      <text x="935.0" y="567.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#412402">Маркетплейсы</text>
+      <text x="935.0" y="585.0" text-anchor="middle" dominant-baseline="central"
+            font-family="DejaVu Sans" font-size="11"
+            fill="#412402">Wildberries / Ozon</text>
+    </g><line x1="190" y1="135" x2="358" y2="280"
+                       stroke="#555555" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <text x="274.0" y="203.5" text-anchor="middle"
+                              font-family="DejaVu Sans" font-size="11"
+                              fill="#555555">оформляет заказы</text><line x1="190" y1="255" x2="358" y2="300"
+                       stroke="#555555" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <text x="274.0" y="273.5" text-anchor="middle"
+                              font-family="DejaVu Sans" font-size="11"
+                              fill="#555555">обрабатывает заказы</text><line x1="190" y1="375" x2="358" y2="320"
+                       stroke="#555555" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <text x="274.0" y="343.5" text-anchor="middle"
+                              font-family="DejaVu Sans" font-size="11"
+                              fill="#555555">доставляет</text><line x1="190" y1="495" x2="358" y2="340"
+                       stroke="#555555" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <text x="274.0" y="429.5" text-anchor="middle"
+                              font-family="DejaVu Sans" font-size="11"
+                              fill="#555555">комплектует на складе</text><line x1="622" y1="275" x2="818" y2="95"
+                       stroke="#555555" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <text x="720.0" y="179.0" text-anchor="middle"
+                              font-family="DejaVu Sans" font-size="11"
+                              fill="#555555">приём оплаты</text><line x1="622" y1="295" x2="818" y2="215"
+                       stroke="#555555" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <text x="720.0" y="249.0" text-anchor="middle"
+                              font-family="DejaVu Sans" font-size="11"
+                              fill="#555555">уведомления</text><line x1="622" y1="315" x2="818" y2="335"
+                       stroke="#555555" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <text x="720.0" y="319.0" text-anchor="middle"
+                              font-family="DejaVu Sans" font-size="11"
+                              fill="#555555">учёт</text><line x1="622" y1="335" x2="818" y2="455"
+                       stroke="#555555" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <text x="720.0" y="389.0" text-anchor="middle"
+                              font-family="DejaVu Sans" font-size="11"
+                              fill="#555555">отправка</text><line x1="622" y1="355" x2="818" y2="575"
+                       stroke="#555555" stroke-width="1.4" marker-end="url(#arrow)"/>
+      <text x="720.0" y="459.0" text-anchor="middle"
+                              font-family="DejaVu Sans" font-size="11"
+                              fill="#555555">синхронизация</text>
+</svg>

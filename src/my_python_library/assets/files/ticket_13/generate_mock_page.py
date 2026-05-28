@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent
+OUTPUT_FILE = BASE_DIR / "mock_news.html"
 """
 Генератор тестовой HTML-страницы новостного сайта.
 Используется как «полигон» для иллюстрации парсинга веб-страниц.
@@ -84,7 +89,7 @@ html += """        </div>
 </html>
 """
 
-with open("mock_news.html", "w", encoding="utf-8") as f:
+with OUTPUT_FILE.open("w", encoding="utf-8") as f:
     f.write(html)
 
 print(f"Файл mock_news.html сохранён ({len(articles)} статей)")

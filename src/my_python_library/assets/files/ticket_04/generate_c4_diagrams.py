@@ -9,7 +9,18 @@ Containers, Components) и конвертирует их в PNG.
     python generate_c4_diagrams.py
 """
 
-import cairosvg
+from pathlib import Path
+
+try:
+    import cairosvg
+except (ImportError, OSError) as exc:
+    cairosvg = None
+    CAIROSVG_ERROR = exc
+else:
+    CAIROSVG_ERROR = None
+
+
+BASE_DIR = Path(__file__).resolve().parent
 
 # --- Цветовая палитра (мягкие пастельные тона) ---
 COLORS = {
@@ -82,15 +93,20 @@ def svg_header(W, H, title):
 
 def save(filename, svg_content, W, H):
     """Сохранение SVG и конвертация в PNG."""
-    with open(f"{filename}.svg", "w", encoding="utf-8") as f:
+    svg_path = BASE_DIR / f"{filename}.svg"
+    png_path = BASE_DIR / f"{filename}.png"
+    with svg_path.open("w", encoding="utf-8") as f:
         f.write(svg_content)
-    cairosvg.svg2png(
-        bytestring=svg_content.encode("utf-8"),
-        write_to=f"{filename}.png",
-        output_width=W * 2,
-        output_height=H * 2,
-    )
-    print(f"  → {filename}.svg, {filename}.png")
+    if cairosvg is not None:
+        cairosvg.svg2png(
+            bytestring=svg_content.encode("utf-8"),
+            write_to=str(png_path),
+            output_width=W * 2,
+            output_height=H * 2,
+        )
+        print(f"  -> {filename}.svg, {filename}.png")
+    else:
+        print(f"  -> {filename}.svg; PNG skipped: Cairo backend недоступен")
 
 
 # ====================================================================
@@ -305,7 +321,10 @@ if __name__ == "__main__":
     diagram_context()
     diagram_containers()
     diagram_components()
-    print("\nГотово. Созданы 6 файлов:")
-    print("  c4_level1_context.{svg,png}")
-    print("  c4_level2_containers.{svg,png}")
-    print("  c4_level3_components.{svg,png}")
+    if cairosvg is not None:
+        print("\nГотово. Созданы 6 файлов:")
+        print("  c4_level1_context.{svg,png}")
+        print("  c4_level2_containers.{svg,png}")
+        print("  c4_level3_components.{svg,png}")
+    else:
+        print("\nГотово. Созданы SVG-файлы. PNG пропущены: Cairo backend недоступен.")

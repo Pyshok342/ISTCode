@@ -144,7 +144,7 @@ def time_to_brute_force(bits: float, attempts_per_sec: float = 1e10) -> str:
     if seconds < 86400*365:    return f"{seconds/86400:.1f} дней"
     if seconds < 86400*365*1e6:
         return f"{seconds/(86400*365):.2e} лет"
-    return "практически бесконечность (> 10⁶ лет)"
+    return "практически бесконечность (> 10^6 лет)"
 
 
 # =====================================================================
@@ -171,8 +171,8 @@ if __name__ == "__main__":
             entropy = estimate_entropy(pwd, alphabet)
             ttb = time_to_brute_force(entropy)
             print(f"    {i+1}. {pwd}")
-            print(f"       энтропия: {entropy:.1f} бит → {classify_entropy(entropy)}")
-            print(f"       время перебора (10¹⁰ tps): {ttb}")
+            print(f"       энтропия: {entropy:.1f} бит -> {classify_entropy(entropy)}")
+            print(f"       время перебора (10^10 tps): {ttb}")
         print()
 
     # Сравнительная сводка

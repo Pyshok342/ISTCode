@@ -1,6 +1,6 @@
 [project]
 name = "istcode"
-version = "2.13"
+version = "2.14"
 description = "Command-line exam ticket helper"
 readme = "README.md"
 requires-python = ">=3.8"

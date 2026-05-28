@@ -7,7 +7,20 @@
     pip install cairosvg
     python generate_erd.py
 """
-import cairosvg
+from pathlib import Path
+
+try:
+    import cairosvg
+except (ImportError, OSError) as exc:
+    cairosvg = None
+    CAIROSVG_ERROR = exc
+else:
+    CAIROSVG_ERROR = None
+
+
+BASE_DIR = Path(__file__).resolve().parent
+SVG_FILE = BASE_DIR / "erd_project_mgmt.svg"
+PNG_FILE = BASE_DIR / "erd_project_mgmt.png"
 
 
 COLORS = {
@@ -365,14 +378,17 @@ svg_parts.append(rel_1_to_many(150, 280, 580, 770, label="учитывает"))
 svg_parts.append("</svg>")
 svg_body = "".join(svg_parts)
 
-with open("erd_project_mgmt.svg", "w", encoding="utf-8") as f:
+with SVG_FILE.open("w", encoding="utf-8") as f:
     f.write(svg_body)
 print("Файл erd_project_mgmt.svg сохранён")
 
-cairosvg.svg2png(
-    bytestring=svg_body.encode("utf-8"),
-    write_to="erd_project_mgmt.png",
-    output_width=W * 2,
-    output_height=H * 2,
-)
-print(f"Файл erd_project_mgmt.png сохранён ({W*2}x{H*2})")
+if cairosvg is not None:
+    cairosvg.svg2png(
+        bytestring=svg_body.encode("utf-8"),
+        write_to=str(PNG_FILE),
+        output_width=W * 2,
+        output_height=H * 2,
+    )
+    print(f"Файл erd_project_mgmt.png сохранён ({W*2}x{H*2})")
+else:
+    print("PNG пропущен: Cairo backend недоступен. SVG сохранён.")

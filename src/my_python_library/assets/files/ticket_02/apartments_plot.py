@@ -4,12 +4,22 @@
 от года постройки на основе датасета apartments.csv.
 """
 
+from pathlib import Path
+
 import pandas as pd
 import matplotlib.pyplot as plt
 
 
+BASE_DIR = Path(__file__).resolve().parent
+DATA_FILE = BASE_DIR / "apartments.csv"
+OUTPUT_FILE = BASE_DIR / "mean_price_by_year.png"
+
+
 # ---------- Шаг 1. Загрузка датасета ----------
-df = pd.read_csv("apartments.csv")
+if not DATA_FILE.exists():
+    raise SystemExit(f"Dataset not found: {DATA_FILE}")
+
+df = pd.read_csv(DATA_FILE)
 
 # Краткий осмотр данных
 print("Размер таблицы:", df.shape)
@@ -59,6 +69,8 @@ plt.grid(True, alpha=0.3)
 plt.tight_layout()
 
 # Сохраняем картинку и показываем
-plt.savefig("mean_price_by_year.png", dpi=150)
-plt.show()
+plt.savefig(OUTPUT_FILE, dpi=150)
+if "agg" not in plt.get_backend().lower():
+    plt.show()
+plt.close()
 print("\nГрафик сохранён в файл mean_price_by_year.png")

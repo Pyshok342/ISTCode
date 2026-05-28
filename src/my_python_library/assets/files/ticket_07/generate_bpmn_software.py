@@ -7,6 +7,11 @@
     pip install cairosvg
     python generate_bpmn_software.py
 """
+from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parent
+SVG_FILE = BASE_DIR / "bpmn_software.svg"
 #import cairosvg
 
 
@@ -199,7 +204,7 @@ svg_body = f'''<?xml version="1.0" encoding="UTF-8"?>
   {arrow(C8 + 32, Y_CUSTOMER, END - 16, Y_CUSTOMER, label="да", dy=-10)}
 </svg>'''
 
-with open("bpmn_software.svg", "w", encoding="utf-8") as f:
+with SVG_FILE.open("w", encoding="utf-8") as f:
     f.write(svg_body)
 print("Файл bpmn_software.svg сохранён")
 

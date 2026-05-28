@@ -15,8 +15,14 @@
     killed          — число погибших
     weather         — погодные условия в момент ДТП
 """
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
+
+
+BASE_DIR = Path(__file__).resolve().parent
+OUTPUT_FILE = BASE_DIR / "traffic_accidents.csv"
 
 rng = np.random.default_rng(seed=42)
 
@@ -134,7 +140,7 @@ df = pd.DataFrame({
 
 df = df.sort_values("date").reset_index(drop=True)
 df["id"] = range(1, len(df) + 1)
-df.to_csv("traffic_accidents.csv", index=False, encoding="utf-8")
+df.to_csv(OUTPUT_FILE, index=False, encoding="utf-8")
 
 print(f"Файл traffic_accidents.csv создан: {len(df)} записей, {len(df.columns)} колонок\n")
 print("Первые 5 строк:")
