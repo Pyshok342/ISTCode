@@ -2,7 +2,7 @@
 
 ## 1. Install Python
 
-Install Python 3.10 or newer from:
+Install Python 3.8 or newer from:
 
 https://www.python.org/downloads/
 

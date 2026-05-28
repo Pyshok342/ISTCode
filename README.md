@@ -2,6 +2,8 @@
 
 Command-line helper for exam tickets.
 
+Python support: 3.8 or newer.
+
 Русская инструкция:
 
 ```text
@@ -28,6 +30,20 @@ After publishing to PyPI:
 
 ```powershell
 python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
+```
+
+## Offline install archive
+
+Build a flash-drive archive with ISTCode and dependency wheels:
+
+```powershell
+make_offline_bundle.bat
+```
+
+The archive is created in `dist`. Copy it to another Windows x64 computer, unzip it, then run:
+
+```powershell
+install_offline.bat
 ```
 
 ## Use

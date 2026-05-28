@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Прорыв в развитии искусственного интеллекта",
+    "slug": "ai-breakthrough-2026",
+    "url": "/article/ai-breakthrough-2026",
+    "category": "ИИ",
+    "author": "Алексей Иванов",
+    "date": "2026-05-25",
+    "summary": "Учёные представили новую архитектуру нейросети, превосходящую GPT-4 по точности на 12 %.",
+    "views": 1247,
+    "comments": 183
+  },
+  {
+    "title": "В России запущен квантовый компьютер на 50 кубитов",
+    "slug": "quantum-computer-russia",
+    "url": "/article/quantum-computer-russia",
+    "category": "Технологии",
+    "author": "Мария Петрова",
+    "date": "2026-05-24",
+    "summary": "Российская команда МФТИ и Росатома представила свой первый 50-кубитный квантовый процессор.",
+    "views": 892,
+    "comments": 97
+  },
+  {
+    "title": "Вышел Python 3.13 с GIL-free режимом",
+    "slug": "python-3-13-release",
+    "url": "/article/python-3-13-release",
+    "category": "Программирование",
+    "author": "Дмитрий Соколов",
+    "date": "2026-05-23",
+    "summary": "Долгожданное обновление включает экспериментальный режим без GIL и улучшенный JIT-компилятор.",
+    "views": 2103,
+    "comments": 324
+  },
+  {
+    "title": "Крупная DDoS-атака на банковский сектор",
+    "slug": "cyber-attack-banks",
+    "url": "/article/cyber-attack-banks",
+    "category": "Безопасность",
+    "author": "Анна Кузнецова",
+    "date": "2026-05-22",
+    "summary": "Несколько крупных банков подверглись скоординированной атаке; работа сервисов восстановлена.",
+    "views": 567,
+    "comments": 78
+  },
+  {
+    "title": "5G-сети развернуты в 15 городах России",
+    "slug": "5g-russia-2026",
+    "url": "/article/5g-russia-2026",
+    "category": "Связь",
+    "author": "Сергей Морозов",
+    "date": "2026-05-21",
+    "summary": "Минцифры объявило о завершении первого этапа развёртывания сетей пятого поколения.",
+    "views": 1456,
+    "comments": 201
+  },
+  {
+    "title": "Создан российский Open Source Foundation",
+    "slug": "opensource-foundation",
+    "url": "/article/opensource-foundation",
+    "category": "Технологии",
+    "author": "Елена Васильева",
+    "date": "2026-05-20",
+    "summary": "Сбер, Яндекс и VK объявили о запуске фонда поддержки российского открытого ПО.",
+    "views": 734,
+    "comments": 112
+  }
+]

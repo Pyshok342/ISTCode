@@ -22,7 +22,7 @@ python -m pip install --upgrade --force-reinstall --no-cache-dir istcode
 
 Если ставишь с GitHub:
 
-1. Установи Python 3.10 или новее:
+1. Установи Python 3.8 или новее:
 
 ```text
 https://www.python.org/downloads/

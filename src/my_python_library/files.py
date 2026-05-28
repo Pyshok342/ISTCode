@@ -4,8 +4,12 @@ import os
 import subprocess
 import sys
 from dataclasses import dataclass
-from importlib.resources import files
 from pathlib import Path
+
+try:
+    from importlib.resources import files
+except ImportError:  # pragma: no cover - Python 3.8 fallback.
+    from importlib_resources import files
 
 TICKET_COUNT = 20
 TICKET_TEXT_FILENAME = "ticket.md"

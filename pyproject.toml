@@ -1,14 +1,25 @@
 [project]
 name = "istcode"
-version = "2.11"
+version = "2.13"
 description = "Command-line exam ticket helper"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 authors = [
   { name = "Pyshok342", email = "spqamsjf@clokkmail.com" }
 ]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13"
+]
 dependencies = [
-  "python-docx>=1.1.2"
+  "importlib-resources>=5.12; python_version < '3.9'",
+  "python-docx>=1.1.2,<1.2; python_version < '3.9'",
+  "python-docx>=1.1.2; python_version >= '3.9'"
 ]
 
 [project.optional-dependencies]

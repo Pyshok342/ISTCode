@@ -192,16 +192,26 @@ def get_ticket(number: int) -> Ticket:
 def format_ticket(number: int) -> str:
     ticket_word_text = read_ticket_word_text(number)
     if ticket_word_text is not None:
-        return ticket_word_text
+        return ensure_ticket_heading(number, ticket_word_text)
 
     ticket_text = read_ticket_text(number)
     if ticket_text is not None:
-        return ticket_text
+        return ensure_ticket_heading(number, ticket_text)
 
     ticket = get_ticket(number)
     lines = [f"Билет №{ticket.number}", ""]
     lines.extend(f"{index}. {question}" for index, question in enumerate(ticket.questions, start=1))
     return "\n".join(lines)
+
+
+def ensure_ticket_heading(number: int, text: str) -> str:
+    heading = f"Билет №{number}"
+    result = text.lstrip()
+    if not result.startswith(heading):
+        result = f"{heading}\n{result}"
+    if "Ответ:" not in result:
+        result = result.replace(f"{heading}\n", f"{heading}\nОтвет:\n", 1)
+    return result
 
 
 def resolve_ticket_text_path(number: int):

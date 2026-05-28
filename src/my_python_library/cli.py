@@ -130,7 +130,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 print(f"  {filename}: {error}")
         return 0
 
-    if ticket_arg.lower() in {"search", "find", "поиск", "найти"}:
+    if ticket_arg.lower() in {"search", "searh", "serach", "find", "поиск", "найти"}:
         query = " ".join(args.number).strip()
         if not query:
             print('Ошибка: укажите фразу, например: ist-ticket search "метрики регрессии"', file=sys.stderr)

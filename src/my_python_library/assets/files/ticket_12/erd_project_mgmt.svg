@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900">
+  <text x="700.0" y="28" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="17" font-weight="700"
+        fill="#1A1A1A">ER-диаграмма системы управления проектами</text>
+  <text x="700.0" y="50" text-anchor="middle"
+        font-family="DejaVu Sans" font-size="11" font-style="italic"
+        fill="#555555">Нотация crow's foot (Бахмана). PK — первичный ключ, FK — внешний ключ</text>
+    <g>
+      <!-- Тень -->
+      <rect x="42" y="92" width="220" height="150" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="40" y="90" width="220" height="150" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="40" y="90" width="220" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="40" y="114" width="220" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="150.0" y="110.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">User (Пользователь)</text>
+      <line x1="40" y1="120" x2="260" y2="120"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="48" y="134" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="72" y="134" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="252" y="134" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="48" y="156" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="156" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">login</text>
+      <text x="252" y="156" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(50)</text>
+      <text x="48" y="178" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="178" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">email</text>
+      <text x="252" y="178" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(100)</text>
+      <text x="48" y="200" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="200" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">password_hash</text>
+      <text x="252" y="200" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(255)</text>
+      <text x="48" y="222" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="222" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">created_at</text>
+      <text x="252" y="222" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">TIMESTAMP</text>    </g>
+    <g>
+      <!-- Тень -->
+      <rect x="42" y="292" width="220" height="172" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="40" y="290" width="220" height="172" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="40" y="290" width="220" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="40" y="314" width="220" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="150.0" y="310.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">UserProfile (Профиль)</text>
+      <line x1="40" y1="320" x2="260" y2="320"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="48" y="334" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="72" y="334" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="252" y="334" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="48" y="356" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="72" y="356" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">user_id</text>
+      <text x="252" y="356" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT (UQ)</text>
+      <text x="48" y="378" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="378" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">first_name</text>
+      <text x="252" y="378" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(50)</text>
+      <text x="48" y="400" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="400" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">last_name</text>
+      <text x="252" y="400" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(50)</text>
+      <text x="48" y="422" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="422" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">avatar_url</text>
+      <text x="252" y="422" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(255)</text>
+      <text x="48" y="444" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="444" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">phone</text>
+      <text x="252" y="444" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(20)</text>    </g>
+    <g>
+      <!-- Тень -->
+      <rect x="352" y="92" width="220" height="150" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="350" y="90" width="220" height="150" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="350" y="90" width="220" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="350" y="114" width="220" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="460.0" y="110.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">Team (Команда)</text>
+      <line x1="350" y1="120" x2="570" y2="120"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="358" y="134" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="382" y="134" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="562" y="134" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="358" y="156" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="382" y="156" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">name</text>
+      <text x="562" y="156" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(100)</text>
+      <text x="358" y="178" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="382" y="178" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">description</text>
+      <text x="562" y="178" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">TEXT</text>
+      <text x="358" y="200" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="382" y="200" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">lead_user_id</text>
+      <text x="562" y="200" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="358" y="222" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="382" y="222" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">created_at</text>
+      <text x="562" y="222" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">TIMESTAMP</text>    </g>
+    <g>
+      <!-- Тень -->
+      <rect x="652" y="92" width="240" height="194" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="650" y="90" width="240" height="194" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="650" y="90" width="240" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="650" y="114" width="240" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="770.0" y="110.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">Project (Проект)</text>
+      <line x1="650" y1="120" x2="890" y2="120"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="658" y="134" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="682" y="134" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="882" y="134" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="658" y="156" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="682" y="156" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">name</text>
+      <text x="882" y="156" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(200)</text>
+      <text x="658" y="178" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="682" y="178" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">description</text>
+      <text x="882" y="178" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">TEXT</text>
+      <text x="658" y="200" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="682" y="200" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">team_id</text>
+      <text x="882" y="200" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="658" y="222" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="682" y="222" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">start_date</text>
+      <text x="882" y="222" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">DATE</text>
+      <text x="658" y="244" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="682" y="244" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">end_date</text>
+      <text x="882" y="244" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">DATE</text>
+      <text x="658" y="266" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="682" y="266" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">status</text>
+      <text x="882" y="266" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(30)</text>    </g>
+    <g>
+      <!-- Тень -->
+      <rect x="962" y="92" width="240" height="172" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="960" y="90" width="240" height="172" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="960" y="90" width="240" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="960" y="114" width="240" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="1080.0" y="110.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">Sprint (Спринт)</text>
+      <line x1="960" y1="120" x2="1200" y2="120"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="968" y="134" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="992" y="134" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="1192" y="134" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="968" y="156" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="992" y="156" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">project_id</text>
+      <text x="1192" y="156" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="968" y="178" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="992" y="178" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">name</text>
+      <text x="1192" y="178" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(100)</text>
+      <text x="968" y="200" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="992" y="200" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">start_date</text>
+      <text x="1192" y="200" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">DATE</text>
+      <text x="968" y="222" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="992" y="222" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">end_date</text>
+      <text x="1192" y="222" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">DATE</text>
+      <text x="968" y="244" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="992" y="244" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">goal</text>
+      <text x="1192" y="244" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">TEXT</text>    </g>
+    <g>
+      <!-- Тень -->
+      <rect x="42" y="532" width="200" height="128" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="40" y="530" width="200" height="128" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="40" y="530" width="200" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="40" y="554" width="200" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="140.0" y="550.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">Status (Статус)</text>
+      <line x1="40" y1="560" x2="240" y2="560"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="48" y="574" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="72" y="574" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="232" y="574" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="48" y="596" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="596" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">name</text>
+      <text x="232" y="596" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(30)</text>
+      <text x="48" y="618" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="618" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">color</text>
+      <text x="232" y="618" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(7)</text>
+      <text x="48" y="640" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="72" y="640" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">order_index</text>
+      <text x="232" y="640" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>    </g>
+    <g>
+      <!-- Тень -->
+      <rect x="582" y="472" width="260" height="238" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="580" y="470" width="260" height="238" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="580" y="470" width="260" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="580" y="494" width="260" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="710.0" y="490.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">Task (Задача)</text>
+      <line x1="580" y1="500" x2="840" y2="500"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="588" y="514" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="612" y="514" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="832" y="514" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="588" y="536" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="612" y="536" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">project_id</text>
+      <text x="832" y="536" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="588" y="558" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="612" y="558" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">sprint_id</text>
+      <text x="832" y="558" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="588" y="580" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="612" y="580" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">status_id</text>
+      <text x="832" y="580" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="588" y="602" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="612" y="602" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">assignee_id</text>
+      <text x="832" y="602" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="588" y="624" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="612" y="624" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">title</text>
+      <text x="832" y="624" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(200)</text>
+      <text x="588" y="646" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="612" y="646" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">description</text>
+      <text x="832" y="646" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">TEXT</text>
+      <text x="588" y="668" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="612" y="668" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">priority</text>
+      <text x="832" y="668" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(20)</text>
+      <text x="588" y="690" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="612" y="690" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">due_date</text>
+      <text x="832" y="690" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">TIMESTAMP</text>    </g>
+    <g>
+      <!-- Тень -->
+      <rect x="962" y="472" width="240" height="150" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="960" y="470" width="240" height="150" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="960" y="470" width="240" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="960" y="494" width="240" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="1080.0" y="490.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">Comment (Комментарий)</text>
+      <line x1="960" y1="500" x2="1200" y2="500"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="968" y="514" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="992" y="514" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="1192" y="514" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="968" y="536" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="992" y="536" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">task_id</text>
+      <text x="1192" y="536" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="968" y="558" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="992" y="558" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">author_id</text>
+      <text x="1192" y="558" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="968" y="580" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="992" y="580" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">text</text>
+      <text x="1192" y="580" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">TEXT</text>
+      <text x="968" y="602" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="992" y="602" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">created_at</text>
+      <text x="1192" y="602" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">TIMESTAMP</text>    </g>
+    <g>
+      <!-- Тень -->
+      <rect x="962" y="682" width="240" height="150" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="960" y="680" width="240" height="150" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="960" y="680" width="240" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="960" y="704" width="240" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="1080.0" y="700.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">Attachment (Вложение)</text>
+      <line x1="960" y1="710" x2="1200" y2="710"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="968" y="724" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="992" y="724" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="1192" y="724" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="968" y="746" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="992" y="746" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">task_id</text>
+      <text x="1192" y="746" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="968" y="768" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="992" y="768" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">filename</text>
+      <text x="1192" y="768" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(255)</text>
+      <text x="968" y="790" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="992" y="790" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">file_url</text>
+      <text x="1192" y="790" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(500)</text>
+      <text x="968" y="812" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="992" y="812" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">size</text>
+      <text x="1192" y="812" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">BIGINT</text>    </g>
+    <g>
+      <!-- Тень -->
+      <rect x="582" y="722" width="260" height="172" rx="4"
+            fill="#000000" opacity="0.12"/>
+      <!-- Основной прямоугольник -->
+      <rect x="580" y="720" width="260" height="172" rx="4"
+            fill="#FFFFFF"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <!-- Заголовок -->
+      <rect x="580" y="720" width="260" height="30" rx="4"
+            fill="#3F5F89"
+            stroke="#2B405E" stroke-width="1.2"/>
+      <rect x="580" y="744" width="260" height="6"
+            fill="#3F5F89"
+            stroke="none"/>
+      <text x="710.0" y="740.0" text-anchor="middle"
+            font-family="DejaVu Sans" font-size="13" font-weight="700"
+            fill="#FFFFFF">TimeLog (Учёт времени)</text>
+      <line x1="580" y1="750" x2="840" y2="750"
+            stroke="#2B405E" stroke-width="1"/>
+      <text x="588" y="764" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#B8860B">PK</text>
+      <text x="612" y="764" font-family="DejaVu Sans" font-size="11"
+            font-weight="700" fill="#1A1A1A">id</text>
+      <text x="832" y="764" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="588" y="786" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="612" y="786" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">task_id</text>
+      <text x="832" y="786" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="588" y="808" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#1F6FB5">FK</text>
+      <text x="612" y="808" font-family="DejaVu Sans" font-size="11"
+            font-weight="500" fill="#1A1A1A">user_id</text>
+      <text x="832" y="808" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">INT</text>
+      <text x="588" y="830" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="612" y="830" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">hours</text>
+      <text x="832" y="830" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">DECIMAL(5,2)</text>
+      <text x="588" y="852" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="612" y="852" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">log_date</text>
+      <text x="832" y="852" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">DATE</text>
+      <text x="588" y="874" font-family="DejaVu Sans Mono" font-size="9"
+            font-weight="700" fill="#888888"></text>
+      <text x="612" y="874" font-family="DejaVu Sans" font-size="11"
+            font-weight="400" fill="#1A1A1A">note</text>
+      <text x="832" y="874" text-anchor="end" font-family="DejaVu Sans"
+            font-size="10" font-style="italic" fill="#777777">VARCHAR(500)</text>    </g>
+    <line x1="260" y1="240" x2="260" y2="340"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="253.0" y1="254.0"
+          x2="267.0" y2="254.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="253.0" y1="326.0"
+          x2="267.0" y2="326.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="260.0" y="284.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">имеет</text>
+    <line x1="570" y1="160" x2="650" y2="160"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="584.0" y1="167.0"
+          x2="584.0" y2="153.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="648.0" y1="160.0"
+          x2="636.0" y2="168.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="648.0" y1="160.0"
+          x2="636.0" y2="152.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="648.0" y1="160.0"
+          x2="636.0" y2="160.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="610.0" y="154.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">ведёт</text>
+    <line x1="260" y1="130" x2="350" y2="160"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="271.0679718105893" y1="141.0679718105893"
+          x2="275.49516053482506" y2="127.78640563788213"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="348.10263340389895" y1="159.36754446796633"
+          x2="334.1886116991581" y2="163.1622776601684"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="348.10263340389895" y1="159.36754446796633"
+          x2="339.2482559554275" y2="147.98334489136016"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="348.10263340389895" y1="159.36754446796633"
+          x2="336.7184338272928" y2="155.57281127576428"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="305.0" y="139.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">руководит</text>
+    <line x1="890" y1="160" x2="960" y2="160"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="904.0" y1="167.0"
+          x2="904.0" y2="153.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="958.0" y1="160.0"
+          x2="946.0" y2="168.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="958.0" y1="160.0"
+          x2="946.0" y2="152.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="958.0" y1="160.0"
+          x2="946.0" y2="160.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="925.0" y="154.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">содержит</text>
+    <line x1="770" y1="260" x2="710" y2="470"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="759.423236575951" y1="271.5382873716899"
+          x2="772.8845718429225" y2="275.38438316225313"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="710.5494422557947" y1="468.0769521047184"
+          x2="706.1539042094366" y2="454.34089570984946"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="710.5494422557947" y1="468.0769521047184"
+          x2="721.5382873716899" y2="458.73643375620753"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="710.5494422557947" y1="468.0769521047184"
+          x2="713.8460957905633" y2="456.5386647330285"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="740.0" y="359.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">содержит задачи</text>
+    <line x1="1000" y1="225" x2="800" y2="470"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="985.7241007402307" y1="231.41862137260944"
+          x2="996.5693575422259" y2="240.27189223138112"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="801.2647529798245" y1="468.45067759971494"
+          x2="802.6559812576315" y2="454.09573127870664"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="801.2647529798245" y1="468.45067759971494"
+          x2="815.0505604599118" y2="464.2137551173028"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="801.2647529798245" y1="468.45067759971494"
+          x2="808.8532708587717" y2="459.1547431980047"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="900.0" y="341.5" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">включает</text>
+    <line x1="240" y1="565" x2="580" y2="565"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="254.0" y1="572.0"
+          x2="254.0" y2="558.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="578.0" y1="565.0"
+          x2="566.0" y2="573.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="578.0" y1="565.0"
+          x2="566.0" y2="557.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="578.0" y1="565.0"
+          x2="566.0" y2="565.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="410.0" y="559.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">у задач</text>
+    <line x1="150" y1="280" x2="600" y2="470"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="160.17468960047688" y1="291.8943554484448"
+          x2="165.62029811904193" y2="278.9968615886854"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="598.1575008771772" y1="469.2220559259193"
+          x2="583.9907298439177" y2="471.924387972726"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="598.1575008771772" y1="469.2220559259193"
+          x2="590.2142824365635" y2="457.1843949901438"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="598.1575008771772" y1="469.2220559259193"
+          x2="587.1025061402406" y2="464.5543914814349"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="375.0" y="369.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">назначен</text>
+    <line x1="840" y1="530" x2="960" y2="530"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="854.0" y1="537.0"
+          x2="854.0" y2="523.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="958.0" y1="530.0"
+          x2="946.0" y2="538.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="958.0" y1="530.0"
+          x2="946.0" y2="522.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="958.0" y1="530.0"
+          x2="946.0" y2="530.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="900.0" y="524.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">имеет</text>
+    <line x1="260" y1="200" x2="1080" y2="470"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="271.10843930784904" y1="211.0273558092516"
+          x2="275.48694823211065" y2="197.72966203927174"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="1078.1003294614316" y1="469.37449872510547"
+          x2="1064.200301130442" y2="473.22017323001256"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="1078.1003294614316" y1="469.37449872510547"
+          x2="1069.2043113295983" y2="458.0228089214641"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="1078.1003294614316" y1="469.37449872510547"
+          x2="1066.7023062300202" y2="465.62149107573833"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="670.0" y="329.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">автор</text>
+    <line x1="840" y1="620" x2="960" y2="720"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="846.2738071167119" y1="634.3401305524843"
+          x2="855.2363887120146" y2="623.5850326381211"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="958.4635574408053" y1="718.7196312006711"
+          x2="944.123426888321" y2="717.1831886414762"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="958.4635574408053" y1="718.7196312006711"
+          x2="954.3663772829526" y2="704.8916481679183"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="958.4635574408053" y1="718.7196312006711"
+          x2="949.2449020856368" y2="711.0374184046973"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="900.0" y="664.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">имеет</text>
+    <line x1="710" y1="668" x2="710" y2="720"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="703.0" y1="682.0"
+          x2="717.0" y2="682.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="710.0" y1="718.0"
+          x2="702.0" y2="706.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="710.0" y1="718.0"
+          x2="718.0" y2="706.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="710.0" y1="718.0"
+          x2="710.0" y2="706.0"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="710.0" y="688.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">учёт</text>
+    <line x1="150" y1="280" x2="580" y2="770"
+          stroke="#444444" stroke-width="1.4"/>
+    <line x1="153.97287864222938" y1="295.1398888798471"
+          x2="164.49563828921532" y2="285.9056304141248"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="578.6808202191826" y1="768.4967486218592"
+          x2="564.7527360217143" y2="764.753959476284"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="578.6808202191826" y1="768.4967486218592"
+          x2="576.7787470468411" y2="754.2005212297441"
+          stroke="#444444" stroke-width="1.6"/>
+    <line x1="578.6808202191826" y1="768.4967486218592"
+          x2="570.7657415342777" y2="759.477240353014"
+          stroke="#444444" stroke-width="1.6"/>
+    <text x="365.0" y="519.0" text-anchor="middle"
+          font-family="DejaVu Sans" font-size="10" font-style="italic"
+          fill="#222222">учитывает</text></svg>

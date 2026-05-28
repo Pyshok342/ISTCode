@@ -156,7 +156,23 @@ def test_cli_search_prints_commands(monkeypatch: pytest.MonkeyPatch, tmp_path, c
     assert "ist-ticket open 1" in output
 
 
-def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:
+def test_cli_search_accepts_common_typo(monkeypatch: pytest.MonkeyPatch, tmp_path, capsys: pytest.CaptureFixture[str]) -> None:
+    folder = tmp_path / "ticket_01"
+    folder.mkdir()
+    (folder / "ticket.md").write_text("Find typo search phrase.", encoding="utf-8")
+
+    monkeypatch.setattr("my_python_library.search.list_ticket_numbers", lambda: [1])
+    monkeypatch.setattr("my_python_library.search.list_ticket_file_paths", lambda number: (folder / "ticket.md",))
+
+    assert main(["searh", "typo", "phrase"]) == 0
+    output = capsys.readouterr().out
+    assert "ticket.md" in output
+    assert "ist-ticket 1" in output
+
+
+def test_cli_prints_ticket(monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]) -> None:
+    monkeypatch.setattr("my_python_library.cli.list_ticket_attachment_paths", lambda number: ("attachment.png",))
+
     assert main(["1"]) == 0
     output = capsys.readouterr().out
     assert "Билет №1" in output
@@ -166,7 +182,12 @@ def test_cli_prints_ticket(capsys: pytest.CaptureFixture[str]) -> None:
     assert any(file.filename in output for file in list_ticket_files(1) if file.filename != "ticket.md")
 
 
-def test_cli_prints_ticket_without_attachment_list(capsys: pytest.CaptureFixture[str]) -> None:
+def test_cli_prints_ticket_without_attachment_list(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    monkeypatch.setattr("my_python_library.cli.list_ticket_attachment_paths", lambda number: ())
+
     assert main(["2"]) == 0
     output = capsys.readouterr().out
     assert "Билет №2" in output
